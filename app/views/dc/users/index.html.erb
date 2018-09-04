@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dc Users</h1>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :photo_num %>
+  <%= f.search_field :photo_num_gteq %>
+
+  <%= f.submit %>
+<% end %>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th>Photo num</th>
+      <th>Photo hash</th>
+      <th>Sign</th>
+      <th>Info</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dc_users.each do |dc_user| %>
+      <tr>
+        <td><%= dc_user.uid %></td>
+        <td><%= dc_user.photo_num %></td>
+        <td><%= dc_user.photo_hash %></td>
+        <td><%= dc_user.sign %></td>
+        <td><%= dc_user.info %></td>
+        <td><%= link_to 'Show', dc_user %></td>
+        <td><%= link_to 'Edit', edit_dc_user_path(dc_user) %></td>
+        <td><%= link_to 'Destroy', dc_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= will_paginate @dc_users %>
+
+<br>
+
+<%= link_to 'New Dc User', new_dc_user_path %>

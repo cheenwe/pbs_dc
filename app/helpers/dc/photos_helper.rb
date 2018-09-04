@@ -1,0 +1,2 @@
+module Dc::PhotosHelper
+end

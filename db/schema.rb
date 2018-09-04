@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_14_143154) do
+ActiveRecord::Schema.define(version: 2018_09_04_040218) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,41 @@ ActiveRecord::Schema.define(version: 2018_08_14_143154) do
     t.string "qrcord"
     t.string "zip_url"
     t.string "short_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.integer "age"
+    t.string "phone"
+    t.text "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dc_photos", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dc_users", force: :cascade do |t|
+    t.string "uid"
+    t.integer "photo_num"
+    t.string "photo_hash"
+    t.string "sign"
+    t.string "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.integer "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

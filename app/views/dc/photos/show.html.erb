@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @dc_photo.user_id %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @dc_photo.url %>
+</p>
+
+<%= link_to 'Edit', edit_dc_photo_path(@dc_photo) %> |
+<%= link_to 'Back', dc_photos_path %>

@@ -1,0 +1,27 @@
+<%= form_with(model: dc_photo, local: true) do |form| %>
+  <% if dc_photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dc_photo.errors.count, "error") %> prohibited this dc_photo from being saved:</h2>
+
+      <ul>
+      <% dc_photo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

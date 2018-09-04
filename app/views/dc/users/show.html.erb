@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @dc_user.uid %>
+</p>
+
+<p>
+  <strong>Photo num:</strong>
+  <%= @dc_user.photo_num %>
+</p>
+
+<p>
+  <strong>Photo hash:</strong>
+  <%= @dc_user.photo_hash %>
+</p>
+
+<p>
+  <strong>Sign:</strong>
+  <%= @dc_user.sign %>
+</p>
+
+<p>
+  <strong>Info:</strong>
+  <%= @dc_user.info %>
+</p>
+
+<%= link_to 'Edit', edit_dc_user_path(@dc_user) %> |
+<%= link_to 'Back', dc_users_path %>

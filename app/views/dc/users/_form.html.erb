@@ -1,0 +1,42 @@
+<%= form_with(model: dc_user, local: true) do |form| %>
+  <% if dc_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dc_user.errors.count, "error") %> prohibited this dc_user from being saved:</h2>
+
+      <ul>
+      <% dc_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :uid %>
+    <%= form.text_field :uid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :photo_num %>
+    <%= form.number_field :photo_num %>
+  </div>
+
+  <div class="field">
+    <%= form.label :photo_hash %>
+    <%= form.text_field :photo_hash %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sign %>
+    <%= form.text_field :sign %>
+  </div>
+
+  <div class="field">
+    <%= form.label :info %>
+    <%= form.text_field :info %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
