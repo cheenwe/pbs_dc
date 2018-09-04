@@ -20,8 +20,11 @@ namespace :read do
 
                     photo_num = arr[0]
                     uid  = arr[1]
-                    photo_hash = arr[2].split("uid_hash=")[1].split("&ti")[0]
+                    photo_hash = arr[2].split("uid_hash=")[1].split("&")[0] rescue "--"
                     sign = 1
+
+                    p photo_hash
+
                     # # UserJob.perform_later(uid, photo_num, photo_hash, sign)
                     # Dc::User.create!(
                     #   uid: uid,
