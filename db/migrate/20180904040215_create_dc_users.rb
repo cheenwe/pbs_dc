@@ -4,8 +4,10 @@ class CreateDcUsers < ActiveRecord::Migration[5.2]
       t.string :uid
       t.integer :photo_num
       t.string :photo_hash
-      t.string :sign
+      t.integer :sign, default: 1
       t.string :info
+      t.integer :checked, default:0
+
 
       t.timestamps
     end
