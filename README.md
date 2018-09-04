@@ -32,3 +32,13 @@ or
 3. Qrcode
 
 https://github.com/whomwah/rqrcode/
+
+
+# api
+
+## post api/v1/dc/users
+
+uid
+photo_num
+photo_hash
+sign

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: attachments
+#
+#  id         :integer          not null, primary key
+#  uuid       :string
+#  qrcord     :string
+#  zip_url    :string
+#  short_url  :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Attachment < ApplicationRecord
 	# 短域名服务：
 	# POST http://dwz.cn/admin/create?
