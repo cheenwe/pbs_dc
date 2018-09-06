@@ -50,14 +50,21 @@ namespace :read do
 
 
 
-  desc "read csv"
-  task :test_read => [:environment] do
+  desc "summary"
+  task :count => [:environment] do
 
 
-    file = "/home/chenwei/workspace/dc/tmp/ok/1451111,1461111.csv" #输出文件
+    # file = "/home/chenwei/workspace/dc/tmp/ok/1451111,1461111.csv" #输出文件
+    lists ={}
+    Dc::User.each do |u|
+      num = u.photo_num
+      if lists[:"#{num}"].present?
+        lists[:"#{num}"] = lists[:"#{num}"].to_i + 1
+      else
+        lists[:"#{num}"] =  1
+      end
+    end
 
   end
-
-
 
 end
