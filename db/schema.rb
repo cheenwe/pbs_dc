@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_040218) do
+ActiveRecord::Schema.define(version: 2018_09_06_074025) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 2018_09_04_040218) do
     t.integer "checked", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "has_photo"
+    t.index ["uid"], name: "index_dc_users_on_uid"
   end
 
 end

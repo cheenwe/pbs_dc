@@ -1,7 +1,7 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  pool: 64
+  pool: 68
   timeout: 5000
   host: localhost
   username: root

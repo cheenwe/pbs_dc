@@ -1,0 +1,2 @@
+# 将csv 文件放到 tmp/ok 目录下
+rails read:csv
