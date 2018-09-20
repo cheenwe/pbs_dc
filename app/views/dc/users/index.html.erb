@@ -1,37 +1,68 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Dc Users</h1>
+<h1>
+<%= link_to "账户列表", "/dc/users/" %>
+<small><%= @dc_users_size %> 个</small>
+</h1>
 
-<%= search_form_for @q do |f| %>
-  <%= f.label :photo_num %>
-  <%= f.search_field :photo_num_gteq %>
 
-  <%= f.submit %>
-<% end %>
+
+<table>
+
+  <tbody>
+      <tr>
+        <%= search_form_for @q do |f| %>
+        <td>
+          <%= f.label :photo_num %>
+          <%= f.search_field :photo_num_eq %>
+        </td>
+
+        <td>
+          <%= f.label :uid %>
+          <%= f.search_field :uid_eq %>
+        </td>
+
+        <td>
+          <%= f.label :photo_hash %>
+          <%= f.search_field :photo_hash_cont%>
+        </td>
+
+        <td>
+          <%= f.label :"检索" %>
+          <%= f.submit %>
+        </td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+<br>
+<%= will_paginate @dc_users %>
 <br>
 
 <table>
   <thead>
     <tr>
-      <th>Uid</th>
-      <th>Photo num</th>
-      <th>Photo hash</th>
-      <th>Sign</th>
-      <th>Info</th>
-      <th colspan="3"></th>
+      <th><%= sort_link(@q, :Uid, 'Uid', default_order: :desc) %></th>
+
+      <th><%= sort_link(@q, :photo_num, '照片数', default_order: :desc) %></th>
+      <th>地址</th>
+      <th>标识</th>
+      <th>信息</th>
+      <th colspan="3">操作</th>
     </tr>
   </thead>
 
   <tbody>
     <% @dc_users.each do |dc_user| %>
       <tr>
-        <td><%= dc_user.uid %></td>
-        <td><%= dc_user.photo_num %></td>
+        <td><%= link_to dc_user.uid, "/dc/users/#{dc_user.id}" %></td>
+        <td><%= link_to dc_user.photo_num, "/dc/users/#{dc_user.id}" %></td>
+
         <td><%= dc_user.photo_hash %></td>
         <td><%= dc_user.sign %></td>
         <td><%= dc_user.info %></td>
         <td><%= link_to 'Show', dc_user %></td>
-        <td><%= link_to 'Edit', edit_dc_user_path(dc_user) %></td>
+        <td><%#= link_to 'Edit', edit_dc_user_path(dc_user) %></td>
         <td><%= link_to 'Destroy', dc_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

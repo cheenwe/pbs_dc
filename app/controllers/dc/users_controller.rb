@@ -4,7 +4,7 @@ class Dc::UsersController < ApplicationController
   # GET /dc/users
   # GET /dc/users.json
   def index
-    # @dc_users = Dc::User.all
+    @dc_users_size = Dc::User.all.size
 
     @q = Dc::User.ransack(params[:q])
     @dc_users = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 30)
@@ -13,6 +13,9 @@ class Dc::UsersController < ApplicationController
   # GET /dc/users/1
   # GET /dc/users/1.json
   def show
+
+    photos = @dc_user.photos
+    @photos = photos.paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /dc/users/new

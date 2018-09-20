@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Edit', edit_dc_user_path(@dc_user) %> |
+<%= link_to 'Back', dc_users_path %>
+
 <p>
   <strong>Uid:</strong>
   <%= @dc_user.uid %>
@@ -25,5 +28,21 @@
   <%= @dc_user.info %>
 </p>
 
-<%= link_to 'Edit', edit_dc_user_path(@dc_user) %> |
-<%= link_to 'Back', dc_users_path %>
+
+<h1>Photos</h1>
+
+<%= will_paginate @photos %>
+
+<ul>
+
+  <% @photos.each do |photo| %>
+  <span>
+  <%= image_tag(photo.url) rescue '' %>
+  </span>
+  <% end %>
+
+</ul>
+
+
+
+<br>

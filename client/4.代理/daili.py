@@ -21,6 +21,18 @@ def new_ip():
     # print(proxies)
     return [proxies, ip]
 
+def new_ip():
+  proxy= requests.get("http://192.168.101.5:8000/").text
+  #print(proxy)
+  ip_ports = json.loads(proxy)
+  num = random.randint(0,10)
+  print("random num: %s", num)
+  ip_ports = ip_ports[num]
+  print(ip_ports)
+  ip = ip_ports[0]
+  port = ip_ports[1]
+  return {'http': 'http://%s:%s' % (ip, port)}
+
 def del_ip(ip):
     r = requests.get(daili_ip + '/delete?ip='+ip)
     print(r.text)

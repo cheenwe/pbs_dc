@@ -14,6 +14,7 @@
 
 class Dc::User < ApplicationRecord
 
+  has_many :photos, class_name: "Dc::Photo"
   # validates :uid, presence: true, uniqueness: true
   validates_uniqueness_of :uid, :scope => :sign
   # scope :jiayuan, ->{ where(sign:1) }
