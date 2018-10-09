@@ -44,15 +44,12 @@ class ApiController < ActionController::API
     photos = params[:photos]
     base_info = params[:base_info]
 
-
-
     # @user = Dc::User.new(
     #   uid: params[:uid],
     #   photo_num: params[:photo_num],
     #   photo_hash: params[:photo_hash],
     #   sign: params[:sign],
     # )
-
 
     if UserPhotoJob.perform_later(uid, photo_num, photo_hash, sign,base_info,  photos)
       render :json =>  {
@@ -75,5 +72,31 @@ class ApiController < ActionController::API
     end
 
   end
+
+  def check_info
+    @dc_user = Dc::User.where(info:nil).last
+    @dc_user.update(has_photo:true) rescue ''
+
+    if @dc_user.present? #UserJob.perform_later(uid, photo_num, photo_hash, sign)
+      render :json =>  {
+        data: @dc_user.base_info,
+        status: {
+          code: 200,
+          msg: "成功"
+        },
+        err_no: 0,
+      }, :status => 200
+    else
+      render :json =>  {
+        err_no: 1,
+        data: @dc_user.base_info,
+        status: {
+          code: 500,
+          msg: "保存失败"
+        },
+      }, :status => 200
+    end
+  end
+
 
 end

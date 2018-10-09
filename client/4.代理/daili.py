@@ -7,13 +7,17 @@ import random
 daili_ip = 'http://192.168.101.5:8000'
 
 def new_ip():
-    r = requests.get(daili_ip)
-    ip_ports = json.loads(r.text)
-    ip_ports = random.choice(ip_ports)
-    # print(ip_ports)
+    r = requests.get(daili_ip).text
+    ip_ports = json.loads(proxy)
+
+    max_num = len(ip_ports)
+    num = random.randint(0,max_num)
+
+    print("random num: %s", num)
+    ip_ports = ip_ports[num]
+    print(ip_ports)
     ip = ip_ports[0]
     port = ip_ports[1]
-
     proxies = {
         'http': 'http://%s:%s' % (ip, port),
         'https': 'http://%s:%s' % (ip, port)

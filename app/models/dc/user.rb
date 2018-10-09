@@ -14,7 +14,7 @@
 
 class Dc::User < ApplicationRecord
 
-  has_many :photos, class_name: "Dc::Photo"
+  has_many :photos, class_name: "Dc::Photo", :dependent => :destroy
   # validates :uid, presence: true, uniqueness: true
   validates_uniqueness_of :uid, :scope => :sign
   # scope :jiayuan, ->{ where(sign:1) }
@@ -25,7 +25,7 @@ class Dc::User < ApplicationRecord
   def photo_url
     case sign
     when 1
-      "http://photo.jiayuan.com/showphoto.php?uid_hash=#{photo_hash}&tid=0&cache_key="
+      "http://photo.jiayuan.com/showphoto.php?uid_hash=#{photo_hash}"
     end
   end
 
@@ -43,12 +43,30 @@ class Dc::User < ApplicationRecord
   end
   # Dc::User.new.check_all_repeat
   def check_all_repeat
-    Dc::User.all.each do |user|
-      user.remove_repeat
+    Dc::User.where(info:nil, has_photo:nil).find_in_batches(batch_size: 1000).each do |list|
+      list.each do |user|
+        user.remove_repeat
+      end
     end
 
     # .eacj.map { |e| e.remove_repeat  }
 
+  end
+  def check_photo_hash
+    if photo_hash.size > 32
+      photo_hash
+    else
+      photo_url
+    end
+
+  end
+
+  def base_info
+    {
+      uid: uid,
+      photo_num: photo_num,
+      photo_hash: check_photo_hash,
+    }
   end
 
 end

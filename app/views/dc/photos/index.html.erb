@@ -24,7 +24,7 @@
     <% @dc_photos.each do |dc_photo| %>
       <tr>
         <td><%= dc_photo.user_id %></td>
-        <td><%= dc_photo.url %></td>
+        <td> <%= image_tag(dc_photo.url) rescue '' %></td>
         <td><%= link_to 'Show', dc_photo %></td>
         <td><%= link_to 'Edit', edit_dc_photo_path(dc_photo) %></td>
         <td><%= link_to 'Destroy', dc_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>

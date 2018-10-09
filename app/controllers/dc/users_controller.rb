@@ -4,7 +4,7 @@ class Dc::UsersController < ApplicationController
   # GET /dc/users
   # GET /dc/users.json
   def index
-    @dc_users_size = Dc::User.all.size
+    @dc_users_size = 0#Dc::User.all.size
 
     @q = Dc::User.ransack(params[:q])
     @dc_users = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 30)
