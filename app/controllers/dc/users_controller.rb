@@ -7,7 +7,7 @@ class Dc::UsersController < ApplicationController
     @dc_users_size = 0#Dc::User.all.size
 
     @q = Dc::User.ransack(params[:q])
-    @dc_users = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 30)
+    @dc_users = @q.result().paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /dc/users/1
