@@ -10,7 +10,7 @@ namespace :sys do
     password = config[Rails.env]['password']
 
     export_sql_file = "#{Rails.root}/tmp/#{database}-#{Time.now.to_i}.sql"
-    commands = "mysqldump -u#{username} -p#{password} #{database} > export_sql_file"
+    commands = "mysqldump -u#{username} -p#{password} #{database} > #{export_sql_file}"
 
     p "start export.. \n"
     system(commands)
