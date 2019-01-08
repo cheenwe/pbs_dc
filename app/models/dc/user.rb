@@ -19,7 +19,14 @@ class Dc::User < ApplicationRecord
   validates_uniqueness_of :uid, :scope => :sign
   # scope :jiayuan, ->{ where(sign:1) }
   # scope :baihe, ->{ where(sign:2) }
+  
 
+  # before_create :check_photo_hash
+  
+  # def check_photo_hash
+  #   photo_hash = photo_hash.split("uid_hash=")[1] rescue photo_hash   
+  
+  # end
 
   # sign = 1 #世纪佳缘
   def photo_url
@@ -41,6 +48,7 @@ class Dc::User < ApplicationRecord
     else
     end
   end
+
   # Dc::User.new.check_all_repeat
   def check_all_repeat
     Dc::User.where(info:nil, has_photo:nil).find_in_batches(batch_size: 1000).each do |list|

@@ -1,0 +1,2 @@
+module Hz::BanksHelper
+end

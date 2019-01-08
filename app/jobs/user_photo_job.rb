@@ -13,6 +13,9 @@ class UserPhotoJob < ApplicationJob
     # )
     u = Dc::User.find_by(uid: uid)
 
+
+    photo_hash = photo_hash.split("uid_hash=")[1] rescue photo_hash  
+
     if u.nil?
 
       u = Dc::User.create(

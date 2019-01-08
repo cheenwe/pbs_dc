@@ -1,0 +1,88 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hz Banks</h1>
+
+<table>
+
+  <tbody>
+      <tr>
+        <%= search_form_for @q do |f| %>
+        <td>
+          <%= f.label :id_eq %>
+          <%= f.search_field :id_eq %>
+        </td>
+
+        <td>
+          <%= f.label :"检索" %>
+          <%= f.submit %>
+        </td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Cn date year</th>
+      <th>Cn date month</th>
+      <th>Cn date day</th>
+      <th>Company</th>
+      <th>Card number 1</th>
+      <th>Bank</th>
+      <th>Xingming</th>
+      <th>Card number 2</th>
+      <th>Bank branch</th>
+      <th>Cn money</th>
+      <th>En money</th>
+      <th>Cn date</th>
+      <th>Protocol number</th>
+      <th>Bank number</th>
+      <th>Address</th>
+      <th>Xingming 2</th>
+      <th>En date year</th>
+      <th>En date month</th>
+      <th>En date day</th>
+      <th>Phone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hz_banks.each do |hz_bank| %>
+      <tr>
+        <td><%= hz_bank.id %></td>
+        <td><%= hz_bank.cn_date_year %></td>
+        <td><%= hz_bank.cn_date_month %></td>
+        <td><%= hz_bank.cn_date_day %></td>
+        <td><%= hz_bank.company %></td>
+        <td><%= hz_bank.card_number_1 %></td>
+        <td><%= hz_bank.bank %></td>
+        <td><%= hz_bank.xingming %></td>
+        <td><%= hz_bank.card_number_2 %></td>
+        <td><%= hz_bank.bank_branch %></td>
+        <td><%= hz_bank.cn_money %></td>
+        <td><%= hz_bank.en_money %></td>
+        <td><%= hz_bank.cn_date %></td>
+        <td><%= hz_bank.protocol_number %></td>
+        <td><%= hz_bank.bank_number %></td>
+        <td><%= hz_bank.address %></td>
+        <td><%= hz_bank.xingming_2 %></td>
+        <td><%= hz_bank.en_date_year %></td>
+        <td><%= hz_bank.en_date_month %></td>
+        <td><%= hz_bank.en_date_day %></td>
+        <td><%= hz_bank.phone %></td>
+        <td><%= link_to 'Show', hz_bank %></td>
+<!--         <td><%= link_to 'Edit', edit_hz_bank_path(hz_bank) %></td>
+        <td><%= link_to 'Destroy', hz_bank, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hz Bank', new_hz_bank_path %>
+
+<%= will_paginate @hz_banks %>

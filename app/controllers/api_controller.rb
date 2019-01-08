@@ -99,4 +99,39 @@ class ApiController < ActionController::API
   end
 
 
+  # 分配uid
+  # need 需要多少id 1000 , 2000 
+  # remark 那个爬虫信息 xxxx
+  def uid
+    @uid = Uid.last
+    if @uid.present?  
+      current_num = @uid.number
+      add_size = params[:need].to_f || 1000
+      number = current_num + add_size
+
+      @new_uid = Uid.create(
+        number: number,
+        remark: params[:remark],
+      )
+      render :json =>  {
+        data: [current_num,  @new_uid.number],
+        status: {
+          code: 200,
+          msg: "成功"
+        },
+        err_no: 0,
+      }, :status => 200
+    else
+      render :json =>  {
+        err_no: 1,
+        data: @uid,
+        status: {
+          code: 500,
+          msg: "保存失败"
+        },
+      }, :status => 200
+    end
+  end
+
+
 end

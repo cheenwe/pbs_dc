@@ -1,0 +1,117 @@
+<%= form_with(model: hz_bank, local: true) do |form| %>
+  <% if hz_bank.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hz_bank.errors.count, "error") %> prohibited this hz_bank from being saved:</h2>
+
+      <ul>
+      <% hz_bank.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :cn_date_year %>
+    <%= form.text_field :cn_date_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cn_date_month %>
+    <%= form.text_field :cn_date_month %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cn_date_day %>
+    <%= form.text_field :cn_date_day %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company %>
+    <%= form.text_field :company %>
+  </div>
+
+  <div class="field">
+    <%= form.label :card_number_1 %>
+    <%= form.text_field :card_number_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bank %>
+    <%= form.text_field :bank %>
+  </div>
+
+  <div class="field">
+    <%= form.label :xingming %>
+    <%= form.text_field :xingming %>
+  </div>
+
+  <div class="field">
+    <%= form.label :card_number_2 %>
+    <%= form.text_field :card_number_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bank_branch %>
+    <%= form.text_field :bank_branch %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cn_money %>
+    <%= form.text_field :cn_money %>
+  </div>
+
+  <div class="field">
+    <%= form.label :en_money %>
+    <%= form.text_field :en_money %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cn_date %>
+    <%= form.text_field :cn_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :protocol_number %>
+    <%= form.text_field :protocol_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bank_number %>
+    <%= form.text_field :bank_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :xingming_2 %>
+    <%= form.text_field :xingming_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :en_date_year %>
+    <%= form.text_field :en_date_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :en_date_month %>
+    <%= form.text_field :en_date_month %>
+  </div>
+
+  <div class="field">
+    <%= form.label :en_date_day %>
+    <%= form.text_field :en_date_day %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Uids</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Remark</th>
+      <th>Created At</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @uids.each do |uid| %>
+      <tr>
+        <td><%= uid.number %></td>
+        <td><%= uid.remark %></td>
+        <td><%= uid.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= link_to 'Show', uid %></td>
+        <td><%= link_to 'Edit', edit_uid_path(uid) %></td>
+        <td><%= link_to 'Destroy', uid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= will_paginate @uids %>
+
+<%= link_to 'New Uid', new_uid_path %>

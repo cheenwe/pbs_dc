@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_06_074025) do
+ActiveRecord::Schema.define(version: 2018_12_29_092145) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -60,6 +60,38 @@ ActiveRecord::Schema.define(version: 2018_09_06_074025) do
     t.datetime "updated_at", null: false
     t.boolean "has_photo"
     t.index ["uid"], name: "index_dc_users_on_uid"
+  end
+
+  create_table "hz_banks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "cn_date_year"
+    t.string "cn_date_month"
+    t.string "cn_date_day"
+    t.string "company"
+    t.string "card_number_1"
+    t.string "bank"
+    t.string "xingming"
+    t.string "card_number_2"
+    t.string "bank_branch"
+    t.string "cn_money"
+    t.string "en_money"
+    t.string "cn_date"
+    t.string "protocol_number"
+    t.string "bank_number"
+    t.string "address"
+    t.string "xingming_2"
+    t.string "en_date_year"
+    t.string "en_date_month"
+    t.string "en_date_day"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "uids", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "number"
+    t.string "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
