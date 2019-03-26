@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tyc Investe Abroads</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Abroadd company</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tyc_investe_abroads.each do |tyc_investe_abroad| %>
+      <tr>
+        <td><%= tyc_investe_abroad.company_id %></td>
+        <td><%= tyc_investe_abroad.abroadd_company_id %></td>
+        <td><%= link_to 'Show', tyc_investe_abroad %></td>
+        <td><%= link_to 'Edit', edit_tyc_investe_abroad_path(tyc_investe_abroad) %></td>
+        <td><%= link_to 'Destroy', tyc_investe_abroad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tyc Investe Abroad', new_tyc_investe_abroad_path %>

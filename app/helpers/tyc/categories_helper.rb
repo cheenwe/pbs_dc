@@ -1,0 +1,2 @@
+module Tyc::CategoriesHelper
+end

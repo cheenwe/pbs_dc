@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tyc Gudongs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Human</th>
+      <th>Invest rate</th>
+      <th>Invest amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tyc_gudongs.each do |tyc_gudong| %>
+      <tr>
+        <td><%= tyc_gudong.company_id %></td>
+        <td><%= tyc_gudong.human_id %></td>
+        <td><%= tyc_gudong.invest_rate %></td>
+        <td><%= tyc_gudong.invest_amount %></td>
+        <td><%= link_to 'Show', tyc_gudong %></td>
+        <td><%= link_to 'Edit', edit_tyc_gudong_path(tyc_gudong) %></td>
+        <td><%= link_to 'Destroy', tyc_gudong, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tyc Gudong', new_tyc_gudong_path %>

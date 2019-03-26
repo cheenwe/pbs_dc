@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tyc Humen</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Job</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tyc_humen.each do |tyc_human| %>
+      <tr>
+        <td><%= tyc_human.company_id %></td>
+        <td><%= tyc_human.name %></td>
+        <td><%= tyc_human.code %></td>
+        <td><%= tyc_human.job %></td>
+        <td><%= link_to 'Show', tyc_human %></td>
+        <td><%= link_to 'Edit', edit_tyc_human_path(tyc_human) %></td>
+        <td><%= link_to 'Destroy', tyc_human, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tyc Human', new_tyc_human_path %>

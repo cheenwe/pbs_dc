@@ -1,0 +1,2 @@
+module Tyc::IndustriesHelper
+end

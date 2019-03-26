@@ -1,0 +1,24 @@
+#!/bin/sh
+
+
+### BEGIN INIT INFO
+# Provides:          bank_web
+# Required-Start:    $local_fs $remote_fs $network $syslog redis-server
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: bank web services
+# Description:       bank web services
+# chkconfig: - 85 14
+### END INIT INFO
+
+
+# app_root="/home/deploy/project/web_server"
+
+basepath=$(cd `dirname $0`; pwd)
+app_root=`dirname $basepath`
+# app_root="/home/chenwei/workspace/ruby/bank_server"
+
+cd $app_root
+
+tailf log/development.log

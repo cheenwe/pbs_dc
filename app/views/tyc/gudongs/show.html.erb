@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @tyc_gudong.company_id %>
+</p>
+
+<p>
+  <strong>Human:</strong>
+  <%= @tyc_gudong.human_id %>
+</p>
+
+<p>
+  <strong>Invest rate:</strong>
+  <%= @tyc_gudong.invest_rate %>
+</p>
+
+<p>
+  <strong>Invest amount:</strong>
+  <%= @tyc_gudong.invest_amount %>
+</p>
+
+<%= link_to 'Edit', edit_tyc_gudong_path(@tyc_gudong) %> |
+<%= link_to 'Back', tyc_gudongs_path %>

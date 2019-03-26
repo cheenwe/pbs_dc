@@ -1,0 +1,127 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= link_to 'Tyc Company', tyc_companies_path %></h1>
+
+
+
+<table>
+<tbody>
+<tr>
+  <%= search_form_for @q do |f| %>
+  <td>
+    <%= f.label :id %>
+    <%= f.search_field :id_eq %>
+  </td>
+  <td>
+    <%= f.label :code %>
+    <%= f.search_field :code_eq %>
+  </td>
+  <td>
+    <%= f.label :name %>
+    <%= f.search_field :name_cont %>
+  </td>
+  <td>
+    <%= f.label :boss_name %>
+    <%= f.search_field :boss_name_cont %>
+  </td>
+
+  <td>
+    <%= f.label :"检索" %>
+    <%= f.submit %>
+  </td>
+  <% end %>
+</tr>
+</tbody>
+</table>
+
+
+<%= will_paginate @tyc_companies %>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Code</th>
+      <th>Logo</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Intro</th>
+      <th>Boss name</th>
+      <th>Reg number</th>
+      <th>Credit code</th>
+      <th>Company code</th>
+      <!--
+      <th>Old name</th>
+      <th>Phone</th>
+      <th>Mail</th>
+      <th>Url</th>
+      <th>Update date</th>
+      <th>Reg money</th>
+      <th>Set date</th>
+      <th>Status</th>
+      <th>Tax code</th>
+      <th>Category</th>
+      <th>End time</th>
+      <th>Industry</th>
+      <th>Tax</th>
+      <th>Allow time</th>
+      <th>Pay money</th>
+      <th>All people</th>
+      <th>Insured people</th>
+      <th>Organ</th>
+      <th>Reg address</th>
+      <th>En name</th>
+      <th>Operate scope</th>
+      -->
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tyc_companies.each do |tyc_company| %>
+      <tr>
+        <td><%= tyc_company.id %></td>
+        <td><%= tyc_company.code %></td>
+        <td><%= image_tag(tyc_company.logo) rescue '' %></td>
+        <td><%= tyc_company.name %></td>
+        <td><%= tyc_company.address %></td>
+        <td><%= tyc_company.intro %></td>
+        <td><%= tyc_company.boss_name %></td>
+        <td><%= tyc_company.reg_number %></td>
+        <td><%= tyc_company.credit_code %></td>
+        <td><%= tyc_company.company_code %></td>
+        <!--
+        <td><%= tyc_company.old_name %></td>
+        <td><%= tyc_company.phone %></td>
+        <td><%= tyc_company.mail %></td>
+        <td><%= tyc_company.url %></td>
+        <td><%= tyc_company.update_date %></td>
+        <td><%= tyc_company.reg_money %></td>
+        <td><%= tyc_company.set_date %></td>
+        <td><%= tyc_company.status %></td>
+        <td><%= tyc_company.tax_code %></td>
+        <td><%= tyc_company.category_id %></td>
+        <td><%= tyc_company.end_time %></td>
+        <td><%= tyc_company.industry_id %></td>
+        <td><%= tyc_company.tax %></td>
+        <td><%= tyc_company.allow_time %></td>
+        <td><%= tyc_company.pay_money %></td>
+        <td><%= tyc_company.all_people %></td>
+        <td><%= tyc_company.insured_people %></td>
+        <td><%= tyc_company.organ %></td>
+        <td><%= tyc_company.reg_address %></td>
+        <td><%= tyc_company.en_name %></td>
+        <td><%= tyc_company.operate_scope %></td>
+        -->
+        <td><%= link_to 'Show', tyc_company %></td>
+        <!--
+        <td><%= link_to 'Edit', edit_tyc_company_path(tyc_company) %></td>
+        <td><%= link_to 'Destroy', tyc_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= will_paginate @tyc_companies %>
+<br>

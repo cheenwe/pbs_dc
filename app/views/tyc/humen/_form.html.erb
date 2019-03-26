@@ -1,0 +1,37 @@
+<%= form_with(model: tyc_human, local: true) do |form| %>
+  <% if tyc_human.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tyc_human.errors.count, "error") %> prohibited this tyc_human from being saved:</h2>
+
+      <ul>
+      <% tyc_human.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :company_id %>
+    <%= form.number_field :company_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :code %>
+    <%= form.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :job %>
+    <%= form.text_field :job %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

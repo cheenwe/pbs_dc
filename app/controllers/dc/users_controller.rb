@@ -11,7 +11,7 @@ class Dc::UsersController < ApplicationController
   end
 
   # GET /dc/users/1
-  # GET /dc/users/1.json
+  # GET /dc/users/1.json 
   def show
 
     photos = @dc_user.photos

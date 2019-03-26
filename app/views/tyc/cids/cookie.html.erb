@@ -1,0 +1,18 @@
+<h1>New Tyc Cid Cookie</h1>
+<%= @tyc_cookie %>
+<form action="/tyc/cid/cookie" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="MA94zOdtfqiJUjTy5V8/KCpxrsJrUHLq7r+WBb3roCk6p693tj1XfnV9GcV+KJtly3nAX0HyEeoypSFg0jV1/w==">
+
+  <div class="field">
+    <label for="app">app</label>
+    <input type="number" name="tyc_cid[app]" id="app">
+  </div>
+
+  <div class="field">
+    <label for="cookie">cookie</label>
+    <input type="text" name="tyc_cid[cookie]" id="cookie">
+  </div>
+ 
+  <div class="actions">
+    <input type="submit" name="commit" value="Create Cid Cookie" data-disable-with="Create Cid Cookie">
+  </div>
+</form>

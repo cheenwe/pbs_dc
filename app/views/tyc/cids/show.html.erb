@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>City:</strong>
+  <%= @tyc_cid.city_id %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @tyc_cid.state %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @tyc_cid.number %>
+</p>
+
+<%= link_to 'Edit', edit_tyc_cid_path(@tyc_cid) %> |
+<%= link_to 'Back', tyc_cids_path %>

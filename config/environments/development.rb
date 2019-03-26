@@ -17,10 +17,15 @@ Rails.application.configure do
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
-    }
+    # config.cache_store = :memory_store
+    # config.public_file_server.headers = {
+    #   'Cache-Control' => "public, max-age=#{2.days.to_i}"
+    # }:9121
+    config.cache_store = :redis_store, {:host => '127.0.0.1', :port =>6379, :compress => true, :expires_in => 1.year, :compress_threshold => 32.kilobytes}
+    # config.cache_store = :redis_store, "unix:///var/opt/gitlab/redis/redis.socket"
+
+    # config.cache_store = :redis_store, { path: '/var/opt/gitlab/redis/redis.socket', db: 1}, { expires_in: 1.year }
+
   else
     config.action_controller.perform_caching = false
 

@@ -1,0 +1,2 @@
+module Tyc::CompaniesHelper
+end

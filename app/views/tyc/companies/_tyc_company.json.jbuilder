@@ -1,0 +1,2 @@
+json.extract! tyc_company, :id, :code, :logo, :name, :old_name, :phone, :mail, :url, :address, :intro, :update_date, :boss_name, :reg_money, :set_date, :status, :reg_number, :credit_code, :company_code, :tax_code, :category_id, :end_time, :industry_id, :tax, :allow_time, :pay_money, :all_people, :insured_people, :organ, :reg_address, :en_name, :operate_scope, :created_at, :updated_at
+json.url tyc_company_url(tyc_company, format: :json)

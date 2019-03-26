@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tyc Industries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tyc_industries.each do |tyc_industry| %>
+      <tr>
+        <td><%= tyc_industry.name %></td>
+        <td><%= link_to 'Show', tyc_industry %></td>
+        <td><%= link_to 'Edit', edit_tyc_industry_path(tyc_industry) %></td>
+        <td><%= link_to 'Destroy', tyc_industry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tyc Industry', new_tyc_industry_path %>

@@ -14,7 +14,7 @@ class UserPhotoJob < ApplicationJob
     u = Dc::User.find_by(uid: uid)
 
 
-    photo_hash = photo_hash.split("uid_hash=")[1] rescue photo_hash  
+    photo_hash = photo_hash.split("uid_hash=")[1] rescue photo_hash
 
     if u.nil?
 
@@ -26,15 +26,16 @@ class UserPhotoJob < ApplicationJob
         sign: sign
       )
 
+      data = []
       photos.split(',').each do |photo|
         if photo != ''
-          Dc::Photo.create(
+          data << Dc::Photo.new(
             user_id: u.id,
             url: photo
           )
         end
       end
-
+      Dc::Photo.import data
 
     else
       if u.info.present?
@@ -45,14 +46,17 @@ class UserPhotoJob < ApplicationJob
         p "*"*60
         unless u.photos.size > 0
 
+
+          data = []
           photos.split(',').each do |photo|
             if photo != ''
-              Dc::Photo.create(
+              data << Dc::Photo.new(
                 user_id: u.id,
                 url: photo
               )
             end
           end
+          Dc::Photo.import data
         end
       else
 
@@ -65,14 +69,17 @@ class UserPhotoJob < ApplicationJob
 
         # p  u.id
 
-        photos.split(',').each do |photo|
-          if photo != ''
-            Dc::Photo.create(
-              user_id: u.id,
-              url: photo
-            )
+          data = []
+          photos.split(',').each do |photo|
+            if photo != ''
+              data << Dc::Photo.new(
+                user_id: u.id,
+                url: photo
+              )
+            end
           end
-        end
+          Dc::Photo.import data
+
 
       end
 

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @hz_idcard.name %>
+</p>
+
+<p>
+  <strong>Sex:</strong>
+  <%= @hz_idcard.sex %>
+</p>
+
+<p>
+  <strong>Nation:</strong>
+  <%= @hz_idcard.nation %>
+</p>
+
+<p>
+  <strong>Birthday:</strong>
+  <%= @hz_idcard.birthday %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @hz_idcard.street %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @hz_idcard.number %>
+</p>
+
+<p>
+  <strong>Org:</strong>
+  <%= @hz_idcard.org %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @hz_idcard.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @hz_idcard.end_at %>
+</p>
+
+<%= link_to 'Edit', edit_hz_idcard_path(@hz_idcard) %> |
+<%= link_to 'Back', hz_idcards_path %>

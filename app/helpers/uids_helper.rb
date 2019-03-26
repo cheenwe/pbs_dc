@@ -1,2 +1,2 @@
-module UidsHelper
+module UidsHelper 
 end

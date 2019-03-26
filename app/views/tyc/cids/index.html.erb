@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tyc Cids</h1>
+
+<h5>正在爬取数据： <a  href="<%= @codes %> " target="_blank" > <%= @codes %> </a> </h5>
+
+<h5>当期数据需要验证了 </h5> 
+
+<% tyc_need_verify = @tyc_need_verify %>
+
+<a data-confirm="Are you sure?" rel="nofollow" data-method="post" href="/api/v1/tyc/verify_ok?app=<%= tyc_need_verify.split(',')[0] %>">验证完成</a>, <%= tyc_need_verify.split(",")[0] %>  , <%= tyc_need_verify.split(",")[1] %> ,  <a  href="<%= tyc_need_verify.split(',')[2] %> " target="_blank" > <%= tyc_need_verify.split(',')[2] %> </a>
+<hr>
+
+
+<% tyc_need_verify1 = @tyc_need_verify1 %>
+
+<a data-confirm="Are you sure?" rel="nofollow" data-method="post" href="/api/v1/tyc/verify_ok?app=<%= tyc_need_verify1.split(',')[0] %>">验证完成</a>, <%= tyc_need_verify1.split(",")[0] %>  , <%= tyc_need_verify.split(",")[1] %> ,  <a  href="<%= tyc_need_verify.split(',')[2] %> " target="_blank" > <%= tyc_need_verify.split(',')[2] %> </a>
+<hr>
+
+
+
+
+
+<%= will_paginate @tyc_cids %>
+
+<table>
+  <thead>
+    <tr>
+    <th>Number</th>
+      <th>City</th>
+      <th>State</th>
+      <th>created_at</th>
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tyc_cids.each do |tyc_cid| %>
+      <tr>
+      <td><%= tyc_cid.number %></td>
+        <td><%= tyc_cid.city_id %></td>
+        <td><%= tyc_cid.state %></td>
+        <td><%= tyc_cid.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= link_to 'Show', tyc_cid %></td>
+        <td><%#= link_to 'Edit', edit_tyc_cid_path(tyc_cid) %></td>
+        <td><%#= link_to 'Destroy', tyc_cid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= will_paginate @tyc_cids %>
+<%= link_to 'New Tyc Cid', new_tyc_cid_path %>

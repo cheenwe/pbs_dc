@@ -1,0 +1,2 @@
+module Tyc::GudongsHelper
+end

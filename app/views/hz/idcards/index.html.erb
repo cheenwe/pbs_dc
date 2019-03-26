@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hz Idcards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Nation</th>
+      <th>Birthday</th>
+      <th>Street</th>
+      <th>Number</th>
+      <th>Org</th>
+      <th>Start at</th>
+      <th>End at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hz_idcards.each do |hz_idcard| %>
+      <tr>
+        <td><%= hz_idcard.id %></td>
+        <td><%= hz_idcard.name %></td>
+        <td><%= hz_idcard.sex %></td>
+        <td><%= hz_idcard.nation %></td>
+        <td><%= hz_idcard.birthday %></td>
+        <td><%= hz_idcard.street %></td>
+        <td><%= hz_idcard.number %></td>
+        <td><%= hz_idcard.org %></td>
+        <td><%= hz_idcard.start_at %></td>
+        <td><%= hz_idcard.end_at %></td>
+        <td><%= link_to 'Show', hz_idcard %></td>
+        <td><%= link_to 'Edit', edit_hz_idcard_path(hz_idcard) %></td>
+        <td><%= link_to 'Destroy', hz_idcard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hz Idcard', new_hz_idcard_path %>
+<%= will_paginate @hz_idcards %>

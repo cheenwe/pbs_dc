@@ -72,3 +72,9 @@ gem 'activerecord-import'
 
 
 gem 'rqrcode'
+gem 'redis'
+gem 'redis-namespace'
+gem "redis-rails"
+
+# Cache
+gem "second_level_cache"

@@ -1,0 +1,26 @@
+
+/* Table Head */
+#table thead th {
+    background-color: rgb(156, 186, 95);
+    color: #fff;
+    border-bottom-width: 0;
+    }
+    
+    /* Column Style */
+    #table td {
+    color: #000;
+    }
+    /* Heading and Column Style */
+    #table tr, #table th {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(156, 186, 95);
+    }
+    
+    /* Padding and font style */
+    #table td, #table th {
+    padding: 5px 10px;
+    font-size: 12px;
+    font-family: Verdana;
+    font-weight: bold;
+    }

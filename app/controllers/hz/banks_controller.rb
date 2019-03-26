@@ -7,7 +7,7 @@ class Hz::BanksController < ApplicationController
     # @hz_banks = Hz::Bank.all
 
     @q = Hz::Bank.ransack(params[:q])
-    @hz_banks = @q.result().paginate(:page => params[:page], :per_page => 30)
+    @hz_banks = @q.result().paginate(:page => params[:page], :per_page => 50)
   end
 
   # GET /hz/banks/1

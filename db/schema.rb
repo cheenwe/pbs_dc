@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_29_092145) do
+ActiveRecord::Schema.define(version: 2019_03_19_115229) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,30 @@ ActiveRecord::Schema.define(version: 2018_12_29_092145) do
     t.string "short_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "core_areas", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "city_code"
+  end
+
+  create_table "core_cities", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "province_code"
+  end
+
+  create_table "core_provinces", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "core_streets", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "area_code"
+  end
+
+  create_table "core_villages", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "street_code"
   end
 
   create_table "dc_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -83,6 +107,132 @@ ActiveRecord::Schema.define(version: 2018_12_29_092145) do
     t.string "en_date_month"
     t.string "en_date_day"
     t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hz_idcards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "sex"
+    t.string "nation"
+    t.date "birthday"
+    t.string "street"
+    t.string "number"
+    t.string "org"
+    t.date "start_at"
+    t.date "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "jz_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "enter_at"
+    t.boolean "is_first"
+    t.integer "computer_num"
+    t.string "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "jz_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "phone"
+    t.string "alipay"
+    t.integer "rate"
+    t.string "remark"
+    t.integer "this_month_num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "id_card"
+  end
+
+  create_table "tyc_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tyc_cids", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "city_id"
+    t.integer "state"
+    t.string "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tyc_cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tyc_companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "code"
+    t.string "logo"
+    t.string "name"
+    t.string "old_name"
+    t.string "phone"
+    t.string "mail"
+    t.string "url"
+    t.string "address"
+    t.text "intro"
+    t.date "update_date"
+    t.string "boss_name"
+    t.string "reg_money"
+    t.string "set_date"
+    t.string "status"
+    t.string "reg_number"
+    t.string "credit_code"
+    t.string "company_code"
+    t.string "tax_code"
+    t.integer "category_id"
+    t.string "end_time"
+    t.integer "industry_id"
+    t.string "tax"
+    t.string "allow_time"
+    t.string "pay_money"
+    t.string "all_people"
+    t.string "insured_people"
+    t.string "organ"
+    t.string "reg_address"
+    t.string "en_name"
+    t.text "operate_scope"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "city_id"
+    t.integer "used", default: 0
+    t.index ["used"], name: "index_tyc_companies_on_used"
+  end
+
+  create_table "tyc_gudongs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "human_id"
+    t.string "invest_rate"
+    t.string "invest_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tyc_humen", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "company_id"
+    t.string "name"
+    t.string "code"
+    t.string "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tyc_industries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tyc_investe_abroads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "abroadd_company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

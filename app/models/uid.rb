@@ -1,2 +1,3 @@
 class Uid < ApplicationRecord
+
 end

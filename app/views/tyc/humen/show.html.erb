@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @tyc_human.company_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tyc_human.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @tyc_human.code %>
+</p>
+
+<p>
+  <strong>Job:</strong>
+  <%= @tyc_human.job %>
+</p>
+
+<%= link_to 'Edit', edit_tyc_human_path(@tyc_human) %> |
+<%= link_to 'Back', tyc_humen_path %>

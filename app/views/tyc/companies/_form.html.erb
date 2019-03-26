@@ -1,0 +1,167 @@
+<%= form_with(model: tyc_company, local: true) do |form| %>
+  <% if tyc_company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tyc_company.errors.count, "error") %> prohibited this tyc_company from being saved:</h2>
+
+      <ul>
+      <% tyc_company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :code %>
+    <%= form.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :logo %>
+    <%= form.text_field :logo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :old_name %>
+    <%= form.text_field :old_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mail %>
+    <%= form.text_field :mail %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :intro %>
+    <%= form.text_field :intro %>
+  </div>
+
+  <div class="field">
+    <%= form.label :update_date %>
+    <%= form.date_select :update_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :boss_name %>
+    <%= form.text_field :boss_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reg_money %>
+    <%= form.text_field :reg_money %>
+  </div>
+
+  <div class="field">
+    <%= form.label :set_date %>
+    <%= form.text_field :set_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reg_number %>
+    <%= form.text_field :reg_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :credit_code %>
+    <%= form.text_field :credit_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_code %>
+    <%= form.text_field :company_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_code %>
+    <%= form.text_field :tax_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_id %>
+    <%= form.number_field :category_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time %>
+    <%= form.text_field :end_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :industry_id %>
+    <%= form.number_field :industry_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax %>
+    <%= form.text_field :tax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :allow_time %>
+    <%= form.text_field :allow_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pay_money %>
+    <%= form.text_field :pay_money %>
+  </div>
+
+  <div class="field">
+    <%= form.label :all_people %>
+    <%= form.text_field :all_people %>
+  </div>
+
+  <div class="field">
+    <%= form.label :insured_people %>
+    <%= form.text_field :insured_people %>
+  </div>
+
+  <div class="field">
+    <%= form.label :organ %>
+    <%= form.text_field :organ %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reg_address %>
+    <%= form.text_field :reg_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :en_name %>
+    <%= form.text_field :en_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :operate_scope %>
+    <%= form.text_field :operate_scope %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
