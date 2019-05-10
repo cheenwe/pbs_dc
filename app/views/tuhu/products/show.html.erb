@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Kind:</strong>
+  <%= @tuhu_product.kind_id %>
+</p>
+
+<p>
+  <strong>Img:</strong>
+  <%= @tuhu_product.img %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tuhu_product.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @tuhu_product.price %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @tuhu_product.category %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @tuhu_product.url %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @tuhu_product.remark %>
+</p>
+
+<%= link_to 'Edit', edit_tuhu_product_path(@tuhu_product) %> |
+<%= link_to 'Back', tuhu_products_path %>

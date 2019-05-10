@@ -4,8 +4,6 @@ class Jz::UsersController < ApplicationController
   protect_from_forgery with: :null_session
 
 
-
-
   def jz
     if request.get?
       # 查询用户
@@ -28,8 +26,6 @@ class Jz::UsersController < ApplicationController
     elsif request.post?
       # 判断该用户当天是否已经签到
 
-       
-      
       if  params[:user_id].present?
         if Jz::Record.today.where(user_id:params[:user_id]).present?
           @notices ='你今天已签到，请勿重复操作.'
@@ -45,7 +41,6 @@ class Jz::UsersController < ApplicationController
       #  if enter_at < Time.now.beginning_of_day
       else
         @jz_user = Jz::User.create(
-          code: Jz::User.last.code.succ, 
           name: params[:name],
           phone: params[:phone],
           alipay: params[:alipay],
@@ -67,6 +62,7 @@ class Jz::UsersController < ApplicationController
     end
 
   end
+
 
   # GET /jz/users
   # GET /jz/users.json

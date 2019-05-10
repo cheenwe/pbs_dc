@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tuhu Versions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Name</th>
+      <th>Abbr</th>
+      <th>Reamrk</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tuhu_versions.each do |tuhu_version| %>
+      <tr>
+        <td><%= tuhu_version.brand.name rescue '' %></td>
+        <td><a href="/tuhu/details?q[version_id_eq]=<%= tuhu_version.id %>"><%= tuhu_version.name %></a></td>
+        <td><%= tuhu_version.abbr %></td>
+        <td><%= tuhu_version.reamrk %></td>
+        <td><%= link_to 'Show', tuhu_version %></td>
+
+        <!-- 
+        <td><%= link_to 'Edit', edit_tuhu_version_path(tuhu_version) %></td>
+        <td><%= link_to 'Destroy', tuhu_version, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= will_paginate @tuhu_versions %>
+
+
+<%= link_to 'New Tuhu Version', new_tuhu_version_path %>

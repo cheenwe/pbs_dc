@@ -220,7 +220,7 @@ class Ocr::DanjuController < ActionController::API
   end
  
   #合格证
-  def hegezheng
+  def hegeheng
       money = Faker.between(10000, 9999999)
       id_value = System.cache_id("ocr_dj_xinchepiao_id")
       en_date_year = Faker.en_date_year
@@ -580,7 +580,7 @@ class Ocr::DanjuController < ActionController::API
 
       code = ALL_CODE.sample
       village = Core::Village.get_shourt_full_name(code)
-      street = village[2]
+      street = village[2].strip()
     
       aNO_1 = Faker.number(10)
       aNO_2 = Faker.number(8)

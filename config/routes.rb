@@ -1,11 +1,27 @@
 Rails.application.routes.draw do
-
+ 
+  namespace :tuhu do
+    resources :products
+  end
   match "jz" => "jz/users#jz", via: [:get, :post]
+  match "jz/sx" => "jz/sxes#sx", via: [:get, :post]
+  match "shixi" => "jz/sxes#sx", via: [:get, :post]
   
   namespace :jz do
     resources :records 
+    resources :sxes
     resources :users
   end
+
+  namespace :tuhu do
+    resources :prodocts 
+    resources :details
+    resources :versions
+    resources :brands
+  end
+
+
+  match "tuhu" => "tuhu/brands#tuhu", via: [:get, :post]
 
   namespace :tyc do
     resources :cids
@@ -35,7 +51,6 @@ Rails.application.routes.draw do
 
   match "fc" => "jz/records#export", via: [:get]
 
-
   # ====== for python
   match "api/v1/uid" => "api#uid", via: [:get]
   match "api/v1/dc/users" => "api#dc_user", via: [:post]
@@ -51,9 +66,13 @@ Rails.application.routes.draw do
   match "api/v1/tyc/check_verify_ok" => "tyc#check_verify_ok", via: [:get]
   match "api/v1/tyc/cookie" => "tyc#cookie", via: [:get]
 
-
-
   match "/tyc/cid/cookie" => "tyc/cids#cookie", via: [:get, :post]
+
+  match "api/v1/tuhu/brand" => "tuhu#brand", via: [:post]
+
+  match "api/v1/tuhu/cid" => "tuhu#cid", via: [:post] # 车型信息
+  match "api/v1/tuhu/request_cid" => "tuhu#request_cid", via: [:get] # 车型信息
+
 
   # ====== for python
 
@@ -95,7 +114,6 @@ Rails.application.routes.draw do
   match "api/yizhixing" => "ocr/danju#yizhixing", via: [:get]
   #增值税发票
   match "api/zhengzhipiao" => "ocr/danju#zhengzhipiao", via: [:get]
-
   #转账支票
   match "api/zhipiao" => "ocr/danju#zhipiao", via: [:get]
 

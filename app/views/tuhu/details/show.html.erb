@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @tuhu_detail.version_id %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @tuhu_detail.url %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @tuhu_detail.remark %>
+</p>
+
+<%= link_to 'Edit', edit_tuhu_detail_path(@tuhu_detail) %> |
+<%= link_to 'Back', tuhu_details_path %>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tuhu Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Url</th>
+      <th>Remark</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tuhu_details.each do |tuhu_detail| %>
+      <tr>
+        <td><a href="/tuhu/products?detail_id=<%= tuhu_detail.id %>"><%= tuhu_detail.version.name rescue '' %></a></td>
+        <td><%= tuhu_detail.url %></td>
+        <td><%= tuhu_detail.remark %></td>
+        <td><%= link_to 'Show', tuhu_detail %></td>
+        <!-- 
+        <td><%= link_to 'Edit', edit_tuhu_detail_path(tuhu_detail) %></td>
+        <td><%= link_to 'Destroy', tuhu_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= will_paginate @tuhu_details %>
+
+
+<%= link_to 'New Tuhu Detail', new_tuhu_detail_path %>

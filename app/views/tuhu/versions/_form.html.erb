@@ -1,0 +1,37 @@
+<%= form_with(model: tuhu_version, local: true) do |form| %>
+  <% if tuhu_version.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tuhu_version.errors.count, "error") %> prohibited this tuhu_version from being saved:</h2>
+
+      <ul>
+      <% tuhu_version.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :brand_id %>
+    <%= form.number_field :brand_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :abbr %>
+    <%= form.text_field :abbr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reamrk %>
+    <%= form.text_field :reamrk %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

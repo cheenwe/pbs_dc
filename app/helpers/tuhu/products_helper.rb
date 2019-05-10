@@ -1,0 +1,2 @@
+module Tuhu::ProductsHelper
+end

@@ -1,7 +1,7 @@
 class Jz::RecordsController < ApplicationController
   before_action :set_jz_record, only: [:show, :edit, :update, :destroy]
   
-  def export
+  def export 
     # start_at = Date.parse(params[:start_at]).beginning_of_day || Date.today.beginning_of_day-3.days
     # end_at = Date.parse(params[:end_at]).end_of_day || Date.today.end_of_day
 

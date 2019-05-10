@@ -1,6 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Jz Records <%=  @jz_records.size %></h1> 
+<h1>兼职人员信息 </h1> 
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+      <tr>
+        <th>#</th>
+        <th>兼职</th>
+        <th>实习</th>
+        <th>合计</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>num</td>
+        <td><%= @jz_records.size %></td>
+        <td><%= Jz::Sx.today.size %></td>
+        <td> <%= Jz::Sx.today.size + @jz_records.size %></td>
+      </tr> 
+  </tbody>
+</table>
+
 <div class="btn-group m-b-10">
     <a href="/jz/records"><button type="button" class="btn btn-default waves-effect">全部</button></a> 
     <a href="/jz/records?&q[enter_at_gt]=<%= Time.now.beginning_of_week%>"><button type="button" class="btn btn-default waves-effect">本周</button></a>

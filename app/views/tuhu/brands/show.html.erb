@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tuhu_brand.name %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= @tuhu_brand.logo %>
+</p>
+
+<p>
+  <strong>Abbr:</strong>
+  <%= @tuhu_brand.abbr %>
+</p>
+
+<p>
+  <strong>Reamrk:</strong>
+  <%= @tuhu_brand.reamrk %>
+</p>
+
+<%= link_to 'Edit', edit_tuhu_brand_path(@tuhu_brand) %> |
+<%= link_to 'Back', tuhu_brands_path %>

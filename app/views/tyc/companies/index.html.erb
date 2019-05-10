@@ -42,15 +42,15 @@
     <tr>
       <th>ID</th>
       <th>Code</th>
-      <th>Logo</th>
       <th>Name</th>
-      <th>Address</th>
-      <th>Intro</th>
       <th>Boss name</th>
-      <th>Reg number</th>
       <th>Credit code</th>
       <th>Company code</th>
       <!--
+      <th>Reg number</th>
+      <th>Logo</th>
+      <th>Address</th>
+      <th>Intro</th>
       <th>Old name</th>
       <th>Phone</th>
       <th>Mail</th>
@@ -73,6 +73,8 @@
       <th>En name</th>
       <th>Operate scope</th>
       -->
+      <th>created_at</th>
+      
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -82,15 +84,15 @@
       <tr>
         <td><%= tyc_company.id %></td>
         <td><%= tyc_company.code %></td>
-        <td><%= image_tag(tyc_company.logo) rescue '' %></td>
         <td><%= tyc_company.name %></td>
-        <td><%= tyc_company.address %></td>
-        <td><%= tyc_company.intro %></td>
         <td><%= tyc_company.boss_name %></td>
-        <td><%= tyc_company.reg_number %></td>
         <td><%= tyc_company.credit_code %></td>
         <td><%= tyc_company.company_code %></td>
         <!--
+        <td><%= image_tag(tyc_company.logo) rescue '' %></td>
+        <td><%= tyc_company.reg_number %></td>
+        <td><%= tyc_company.address %></td>
+        <td><%= tyc_company.intro %></td>
         <td><%= tyc_company.old_name %></td>
         <td><%= tyc_company.phone %></td>
         <td><%= tyc_company.mail %></td>
@@ -113,6 +115,8 @@
         <td><%= tyc_company.en_name %></td>
         <td><%= tyc_company.operate_scope %></td>
         -->
+
+        <td><%= tyc_company.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= link_to 'Show', tyc_company %></td>
         <!--
         <td><%= link_to 'Edit', edit_tyc_company_path(tyc_company) %></td>

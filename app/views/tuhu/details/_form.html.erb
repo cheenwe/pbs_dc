@@ -1,0 +1,32 @@
+<%= form_with(model: tuhu_detail, local: true) do |form| %>
+  <% if tuhu_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tuhu_detail.errors.count, "error") %> prohibited this tuhu_detail from being saved:</h2>
+
+      <ul>
+      <% tuhu_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :version_id %>
+    <%= form.number_field :version_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remark %>
+    <%= form.text_field :remark %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
