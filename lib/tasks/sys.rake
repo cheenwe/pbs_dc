@@ -1,23 +1,35 @@
 namespace :sys do
 
-  desc "export mysql db "
-  task :export_mysql => [:environment] do
-    config = Rails.configuration.database_configuration
 
-    host = config[Rails.env]['host']
-    database = config[Rails.env]['database']
-    username = config[Rails.env]['username']
-    password = config[Rails.env]['password']
+    desc "export mysql db "
+    task :export_mysql => [:environment] do
+      config = Rails.configuration.database_configuration
 
-    export_sql_file = "#{Rails.root}/tmp/#{database}-#{Time.now.to_i}.sql"
-    commands = "mysqldump -u#{username} -p#{password} #{database} > #{export_sql_file}"
+      host = config[Rails.env]['host']
+      database = config[Rails.env]['database']
+      username = config[Rails.env]['username']
+      password = config[Rails.env]['password']
 
-    p "start export.. \n"
-    system(commands)
-    p "success export! \n"
-    p export_sql_file
+      export_sql_path = "#{Rails.root}/tmp/backup/mysql/"
+      sql_file = "#{database}-#{Time.now.to_i}.sql"
+      export_sql_file = "#{export_sql_path}#{sql_file}"
+      commands = "mysqldump -u#{username} -p#{password} #{database} > #{export_sql_file}"
 
- end
+      p "start export.. "
+      system(commands)
+      p "success export! "
+      p export_sql_file
+      p "star tar file ! "
+      commands = "cd #{export_sql_path} && tar -zcvf #{sql_file}.tar.gz #{sql_file} "
+      system(commands)
+      p "star rm sql file ! "
+      commands = "cd #{export_sql_path} && rm -rf #{sql_file} "
+      system(commands)
+      p "all success ! "
+
+      p "file : #{sql_file}.tar.gz "
+
+   end
 
 
  
