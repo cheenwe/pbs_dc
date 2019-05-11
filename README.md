@@ -1,83 +1,51 @@
 # README
+ 
+本项目创建用于储存各类爬虫获取的数据，后在使用不断拓展添加各类数据生成接口(仅供学习，请勿用于其他途径)，本项目用于学习Demo，后续功能由学习人员实现（我仅指导需求），
+主要功能包括并不限于:
+
+## 爬虫
+
+- 爬虫-世纪佳缘照片数据
+
+- 爬虫-天眼查公司数据
+
+- 爬虫-途虎车辆数据及保养相关数据
 
 
-1. Active Storage (类似 Carrierwave 的实现） - https://evilmartians.com/chronicles/rails-5-2-active-storage-and-beyond
+## 各类假数据
+
+```
+转账信息: api/names
+身份证: api/idcards
+行驶证: api/xingshizheng
+号码: api/phones
+地址: api/address
+姓名: api/name
+公司: api/company
+驾照: api/driving_license
+小写数字: api/small_letter
+日期数据: api/date_data
+存单: api/cundan
+二手车发票: api/ershoupiao
+新车发票: api/xinchepiao
+合格证: api/hegezheng
+进口凭证: api/jinkoupinzheng
+一致性证书: api/yizhixing
+增值税发票: api/zhengzhipiao
+转账支票: api/zhipiao
+```
+## 功能点
+
+1.省市县数据
+2.大小写数据转换
+3.各类假数据生成
+4.数据缓存，接口请求由原先2s降至2ms
+5.异步接口
+6.搜索/分页
+6.简单统计
+.....
 
 
-2. Credentials
-参数文件配置, 以前借助于 setting 等 Gem, 现在 rails 5.2 已集成进来, 并且增加安全性能,
-文件存储在 onfig/credentials.yml.enc
-
-- 修改配置文件:
-
->EDITOR=vi bin/rails credentials:edit
-
-- 查看配置文件
-
->bin/rails credentials:show
-
-- 获取配置
-
-单个:
-
->Rails.application.credentials.key_name
-
-嵌套:
-
->Rails.application.credentials.dig(:section_name, :nested_key_name)
-
-or
-
->Rails.application.credentials.key_name[:nested_key_name]
-
-3. Qrcode
-
-https://github.com/whomwah/rqrcode/
-
-
-# api
-
-## post api/v1/dc/users
-
-uid
-photo_num
-photo_hash
-sign
-
-
-
-# 添加调用接口
-  -添加路由 config/routes.rb
-  -创建方法 controllers/ocr_controller.rb
-
-
-
-rails g scaffold tyc/cid city_id:integer state:integer number:string 
-rails db:migrate 
-
-
-rails g scaffold jz/user code:string name:string phone:string alipay:string rate:integer remark:string this_month_num:integer
-rails db:migrate 
-
-rails g scaffold jz/record user_id:integer enter_at:datetime is_first:boolean computer_num:integer remark:string
-rails db:migrate 
-rails d scaffold jz/record
-
-rails g scaffold jz/sx user_id:integer name:string start_at:datetime end_at:datetime
-rails db:migrate 
-
-#MVC
-ActiveRecord（Model层）：是 Rails 的 ORM 组件，负责与数据库沟通，让我们可以用面向对象的语法操作数据库。
-ActionView（View层）：在Rails中使处理View的部件，负责显示用户的界面以及controller传来的数据。
-ActionController（Controller层）：主要负责处理 Web 请求，检索模型数据并按要求将数据传递给视图。控制器是模型和视图的联系桥梁。
-
-
-
-rails g scaffold tuhu/brand name:string logo:string abbr:string reamrk:string 
-
-rails g scaffold tuhu/version brand_id:integer:index name:string abbr:string reamrk:string
-
-rails g scaffold tuhu/detail version_id:integer url:string remark:string  state:integer:index 
-
-rails g scaffold tuhu/prodoct detail_id:integer kind_id:integer name:string price:string category:string   url:string remark:string  
-rails g scaffold tuhu/product  kind_id:integer  img:string name:string price:string category:string   url:string remark:string  
+## 其他
+仅供学习研究使用，相关数据均来自互联网，
+如有侵权，请及时通知 cxhyun@126.com ，予以删除。

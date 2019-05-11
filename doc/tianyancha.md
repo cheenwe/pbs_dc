@@ -1,3 +1,7 @@
+## 获取公司链接
+rails g scaffold tyc/cid city_id:integer state:integer number:string 
+rails db:migrate 
+
 ## 公司
 
 字段名   |   参数   |  类型  |  说明
@@ -88,7 +92,7 @@ company_id:integer
 abroadd_company_id:integer
 
 
-#添加字段
+##添加字段
 方法一
 rails g migration AddCityIdToTycCompanies
 
@@ -99,11 +103,26 @@ rails db:migrate
 
 default:0
 
-#更新字段
+##更新字段
 Tyc::Company.update_all(used:0)
 
 
+## 途虎保养数据
+车辆品牌
+车辆型号
+具体子品牌
 
+保养产品信息
+
+
+
+rails g scaffold tuhu/brand name:string logo:string abbr:string reamrk:string 
+
+rails g scaffold tuhu/version brand_id:integer:index name:string abbr:string reamrk:string
+
+rails g scaffold tuhu/detail version_id:integer url:string remark:string  state:integer:index 
+
+rails g scaffold tuhu/product  kind_id:integer  img:string name:string price:string category:string   url:string remark:string  
 
 # 保存用户 cookie
 
