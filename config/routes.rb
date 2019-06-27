@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  namespace :che300 do
+    resources :infos
+  end
+  namespace :cn do
+    resources :companies
+  end
+  namespace :monitor do
+    resources :infos
+  end
+  namespace :monitor do
+    resources :servers
+  end
   match "jz" => "jz/users#jz", via: [:get, :post]
   match "jz/sx" => "jz/sxes#sx", via: [:get, :post]
   match "shixi" => "jz/sxes#sx", via: [:get, :post]
@@ -49,7 +61,9 @@ Rails.application.routes.draw do
 
   match "fc" => "jz/records#export", via: [:get]
 
+
   # ====== for python
+  match "api/v1/monitor" => "api#monitor", via: [:post] #监测服务器数据 
   match "api/v1/uid" => "api#uid", via: [:get]
   match "api/v1/dc/users" => "api#dc_user", via: [:post]
   match "api/v1/dc/user/photos" => "api#dc_user_photos", via: [:post]
@@ -67,6 +81,9 @@ Rails.application.routes.draw do
   match "/tyc/cid/cookie" => "tyc/cids#cookie", via: [:get, :post]
 
   match "api/v1/tuhu/brand" => "tuhu#brand", via: [:post]
+
+  match "api/v1/che300" => "tuhu#che300", via: [:post]
+  match "api/v1/che300" => "tuhu#che300_info", via: [:get]
 
   match "api/v1/tuhu/cid" => "tuhu#cid", via: [:post] # 车型信息
   match "api/v1/tuhu/request_cid" => "tuhu#request_cid", via: [:get] # 车型信息
@@ -102,6 +119,8 @@ Rails.application.routes.draw do
   match "api/name" => "ocr#name", via: [:get]
   #公司
   match "api/company" => "tyc#company", via: [:get]
+  match "api/company1" => "tyc#company1", via: [:get]
+  
   #驾照
   match "api/driving_license" => "ocr#driving_license", via: [:get]
   #小写数字
@@ -124,6 +143,8 @@ Rails.application.routes.draw do
   match "api/zhengzhipiao" => "ocr/danju#zhengzhipiao", via: [:get]
   #转账支票
   match "api/zhipiao" => "ocr/danju#zhipiao", via: [:get]
+  match "api/jz/today" => "jz/records#today", via: [:get]
+  
 
 
   root "jz/users#jz"

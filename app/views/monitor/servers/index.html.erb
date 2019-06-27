@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Monitor Servers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ip</th>
+      <th>Remark</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @monitor_servers.each do |monitor_server| %>
+      <tr>
+        <td><%= monitor_server.name %></td>
+        <td><%= monitor_server.ip %></td>
+        <td><%= monitor_server.remark %></td>
+        <td><%= link_to 'Show', monitor_server %></td>
+        <td><%= link_to 'Edit', edit_monitor_server_path(monitor_server) %></td>
+        <td><%= link_to 'Destroy', monitor_server, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @monitor_servers %>
+<br>
+
+<%= link_to 'New Monitor Server', new_monitor_server_path %>

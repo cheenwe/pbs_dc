@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Che300 Infos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Remark</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @che300_infos.each do |che300_info| %>
+      <tr>
+        <td><%= che300_info.remark %></td>
+        <td><%= link_to 'Show', che300_info %></td>
+        <td><%= link_to 'Edit', edit_che300_info_path(che300_info) %></td>
+        <td><%= link_to 'Destroy', che300_info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Che300 Info', new_che300_info_path %>

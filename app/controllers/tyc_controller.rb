@@ -66,6 +66,33 @@ class TycController < ActionController::API
     end
   end
 
+
+  #给调用爬取的公司信息
+  #  api/company
+  def company1
+    tyc_company = Cn::Company.unused.first(200).sample
+
+    if tyc_company.present? && tyc_company.update(used:1)
+      render :json =>  {
+        err_no: 0,
+        data: tyc_company.base_info,
+        status: {
+          code: 200,
+          msg: "数据存在"
+        },
+      }, :status => 200
+    else
+      render :json =>  {
+        err_no: 1,
+        data: '',
+        status: {
+          code: 500,
+          msg: "数据不存在"
+        },
+      }, :status => 200
+    end
+  end
+
   # 接收爬取cid信息
   def cid
       city_id = Tyc::City.create_or_find_by_name(params[:city])

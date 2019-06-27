@@ -1,0 +1,67 @@
+<%= form_with(model: cn_company, local: true) do |form| %>
+  <% if cn_company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cn_company.errors.count, "error") %> prohibited this cn_company from being saved:</h2>
+
+      <ul>
+      <% cn_company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :code %>
+    <%= form.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :regdate %>
+    <%= form.text_field :regdate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :c_type %>
+    <%= form.text_field :c_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :boss %>
+    <%= form.text_field :boss %>
+  </div>
+
+  <div class="field">
+    <%= form.label :capital %>
+    <%= form.text_field :capital %>
+  </div>
+
+  <div class="field">
+    <%= form.label :business_scope %>
+    <%= form.text_area :business_scope %>
+  </div>
+
+  <div class="field">
+    <%= form.label :province %>
+    <%= form.text_field :province %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

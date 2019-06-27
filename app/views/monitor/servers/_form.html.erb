@@ -1,0 +1,32 @@
+<%= form_with(model: monitor_server, local: true) do |form| %>
+  <% if monitor_server.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(monitor_server.errors.count, "error") %> prohibited this monitor_server from being saved:</h2>
+
+      <ul>
+      <% monitor_server.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ip %>
+    <%= form.text_field :ip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remark %>
+    <%= form.text_field :remark %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

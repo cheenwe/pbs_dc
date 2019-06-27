@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_17_065222) do
+ActiveRecord::Schema.define(version: 2019_06_24_033012) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -76,6 +76,27 @@ ActiveRecord::Schema.define(version: 2019_04_17_065222) do
     t.text "flow"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "che300_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cn_companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.string "registrationDay"
+    t.string "character"
+    t.string "legalRepresentative"
+    t.string "capital"
+    t.text "businessScope"
+    t.string "province"
+    t.string "city"
+    t.string "address"
+    t.integer "used"
+    t.index ["used"], name: "index_cn_companies_on_used"
   end
 
   create_table "core_areas", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -240,6 +261,23 @@ ActiveRecord::Schema.define(version: 2019_04_17_065222) do
     t.datetime "created_at", null: false
     t.index ["record_type", "record_id"], name: "index_logs_on_record_type_and_record_id"
     t.index ["user_id"], name: "index_logs_on_user_id"
+  end
+
+  create_table "monitor_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "server_id"
+    t.text "info"
+    t.string "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["server_id"], name: "index_monitor_infos_on_server_id"
+  end
+
+  create_table "monitor_servers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "ip"
+    t.string "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "nodes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

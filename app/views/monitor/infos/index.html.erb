@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Monitor Infos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Server</th>
+      <th>Info</th>
+      <th>Remark</th>
+	<th>Time</th>  
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @monitor_infos.each do |monitor_info| %>
+      <tr>
+        <td><%= monitor_info.server.ip rescue '' %></td>
+        <td><%= monitor_info.info %></td>
+        <td><%= monitor_info.remark %></td>
+<td><%= monitor_info.created_at.strftime("%m-%d %H:%M") %></td> 
+        <td><%= link_to 'Show', monitor_info %></td>
+        <td><%#= link_to 'Edit', edit_monitor_info_path(monitor_info) %></td>
+        <td><%#= link_to 'Destroy', monitor_info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @monitor_infos %>
+<br>
+
+<%= link_to 'New Monitor Info', new_monitor_info_path %>

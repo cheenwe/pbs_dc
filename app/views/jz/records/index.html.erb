@@ -2,6 +2,8 @@
 
 <h1>兼职人员信息 </h1> 
 
+
+
 <table class="table table-striped table-bordered table-hover">
   <thead>
       <tr>
@@ -78,7 +80,11 @@
   <tbody>
     <% @jz_records.each do |jz_record| %>
       <tr>
-        <td><%= jz_record.user.id%></td>
+        <td><%= jz_record.user.id%> |
+        <button class="btn btn-xs" id = "clipboard" data-clipboard-text="<%= jz_record.user.alipay rescue ''%>">
+        Copy 
+        </button>
+      </td>
         <td><%= jz_record.user.name rescue ""%></td>
         <td><%= jz_record.user.phone rescue ""%></td>
         <td><%= jz_record.user.id_card rescue ""%></td>
@@ -98,3 +104,8 @@
 
 <br>
 <%= link_to 'New Jz Record', new_jz_record_path %>
+
+
+<script type="text/javascript">
+new ClipboardJS('#clipboard');
+</script>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Server:</strong>
+  <%= @monitor_info.server_id %>
+</p>
+
+<p>
+  <strong>Info:</strong>
+  <%= @monitor_info.info %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @monitor_info.remark %>
+</p>
+
+<%= link_to 'Edit', edit_monitor_info_path(@monitor_info) %> |
+<%= link_to 'Back', monitor_infos_path %>

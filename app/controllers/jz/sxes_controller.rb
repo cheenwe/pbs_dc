@@ -41,14 +41,15 @@ class Jz::SxesController < ApplicationController
 
     @q = Jz::Sx.order("id DESC").ransack(params[:q])
     @datas = @q.result()
-    @jz_sxes = @datas.paginate(:page => params[:page], :per_page => 30)
+    @jz_sxes = @datas.paginate(:page => params[:page], :per_page => 30) 
 
     @arr = []
-    Jz::User::SHIXI_ID.each do |id|
+    Jz::User::SHIXI_NAME.each do |name|
+      id = Jz::User.find_by(name:name).id
      @arr << {
        id: id,
        size: @datas.where(user_id: id).size,
-       name: Jz::User.find(id).name,
+       name: name,
       }
       
     end

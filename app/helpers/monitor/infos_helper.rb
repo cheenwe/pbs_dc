@@ -1,0 +1,2 @@
+module Monitor::InfosHelper
+end

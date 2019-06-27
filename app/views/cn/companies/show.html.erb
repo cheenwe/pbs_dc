@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cn_company.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @cn_company.code %>
+</p>
+
+<p>
+  <strong>Regdate:</strong>
+  <%= @cn_company.regdate %>
+</p>
+
+<p>
+  <strong>C type:</strong>
+  <%= @cn_company.c_type %>
+</p>
+
+<p>
+  <strong>Boss:</strong>
+  <%= @cn_company.boss %>
+</p>
+
+<p>
+  <strong>Capital:</strong>
+  <%= @cn_company.capital %>
+</p>
+
+<p>
+  <strong>Business scope:</strong>
+  <%= @cn_company.business_scope %>
+</p>
+
+<p>
+  <strong>Province:</strong>
+  <%= @cn_company.province %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @cn_company.city %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @cn_company.address %>
+</p>
+
+<%= link_to 'Edit', edit_cn_company_path(@cn_company) %> |
+<%= link_to 'Back', cn_companies_path %>

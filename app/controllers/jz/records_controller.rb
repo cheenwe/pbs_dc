@@ -44,6 +44,18 @@ class Jz::RecordsController < ApplicationController
     @jz_records = @q.result().paginate(:page => params[:page], :per_page => 20)
   end
 
+  def today
+    # Jz::Sx.today
+    users = Jz::Sx.today.map{|e|e.user.name} + Jz::Record.today.map{|e|e.user.name}
+    
+   render :json => {
+    :data => users,
+    :headcode => 200,
+    :message =>" ok",
+    },
+    :status => 200
+  end
+
   # GET /jz/records/1
   # GET /jz/records/1.json
   def show

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cn Companies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Regdate</th>
+      <th>C type</th>
+      <th>Boss</th>
+      <th>Capital</th>
+      <th>Business scope</th>
+      <th>Province</th>
+      <th>City</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cn_companies.each do |cn_company| %>
+      <tr>
+        <td><%= cn_company.name %></td>
+        <td><%= cn_company.code %></td>
+        <td><%= cn_company.regdate %></td>
+        <td><%= cn_company.c_type %></td>
+        <td><%= cn_company.boss %></td>
+        <td><%= cn_company.capital %></td>
+        <td><%= cn_company.business_scope %></td>
+        <td><%= cn_company.province %></td>
+        <td><%= cn_company.city %></td>
+        <td><%= cn_company.address %></td>
+        <td><%= link_to 'Show', cn_company %></td>
+        <td><%= link_to 'Edit', edit_cn_company_path(cn_company) %></td>
+        <td><%= link_to 'Destroy', cn_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @cn_companies %>
+<br>
+
+<%= link_to 'New Cn Company', new_cn_company_path %>

@@ -12,8 +12,8 @@ class Tyc::Company < ApplicationRecord
       address: get_address,
       boss_name: get_boss_name,
       reg_money: get_reg_money,
-      set_date: get_set_date,
-      end_time: get_end_time,
+      set_date: for_time(get_set_date),
+      end_time: for_time(get_end_time),
       operate_scope: get_operate_scope,
       organ: organ,
       allow_time: get_allow_time,
@@ -87,10 +87,9 @@ class Tyc::Company < ApplicationRecord
     end
 
     # 注册号
-    def get_reg_number
-        p reg_number
-        if reg_number.to_i.size > 8
-            reg_number
+    def get_reg_number 
+        if 	credit_code.size > 8
+            credit_code
         else
             Faker.number(12)
         end
@@ -109,4 +108,39 @@ class Tyc::Company < ApplicationRecord
         end
 
     end
+
+    def format_time(datas)
+        time = datas.split("-")[0]+"年"+datas.split("-")[1]+"月"+datas.split("-")[2]+"日"
+        return time
+    end
+
+    def for_time(date)
+        if date.include?("至")
+            date_1 = date.split("至")[0]
+            date_2 = date.split("至")[1] rescue ''
+
+            str_1 = format_time(date_1)
+            
+            str_2 = format_time(date_2) rescue '无固定期限'
+
+            "#{str_1}至#{str_2}"
+        else
+            format_time(date)
+        end
+
+
+
+        # a = date.split("-")[0]+"年"+date.split("-")[1]+"月"+date.split("-")[2]+"日"
+        # if date.include?("至")
+        #     b = date.split("至")[0]
+        #     c = b.split("-")[0]+"年"+b.split("-")[1]+"月"+b.split("-")[2]+"日"
+            
+        #     if date.split("至")[1].include?("-")
+        #         d = 
+        #     else
+        #     end
+        # end
+    end
+
+
 end

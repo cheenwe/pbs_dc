@@ -1,0 +1,22 @@
+<%= form_with(model: che300_info, local: true) do |form| %>
+  <% if che300_info.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(che300_info.errors.count, "error") %> prohibited this che300_info from being saved:</h2>
+
+      <ul>
+      <% che300_info.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :remark %>
+    <%= form.text_area :remark %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

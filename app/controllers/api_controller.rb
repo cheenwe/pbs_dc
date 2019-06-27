@@ -133,5 +133,35 @@ class ApiController < ActionController::API
     end
   end
 
+  #def monitor
+  #p params[:id]
+  #p params[:data]
+  #end
+  # 监控服务器温度信息
+  #  ip 服务器 ip
+  #  data 数据信息
+  def monitor
+    @server = Monitor::Server.find_by(ip: params[:ip])
+    if @server.present?
+      server_id = @server.id
+    else
+      @server = Monitor::Server.create(ip: params[:ip])
+    end
 
+    server_id = @server.id 
+
+    @info = Monitor::Info.create(
+      server_id: server_id,
+      remark: params[:data],
+    )
+    
+    render :json =>  {
+      status: {
+        code: 200,
+        msg: "成功"
+      },
+      err_no: 0,
+    }, :status => 200
+  
+  end 
 end

@@ -1,5 +1,38 @@
 class TuhuController < ActionController::API
- 
+
+    def che300_info
+        @q = Che300::Info.ransack(params[:q])
+        data = @q.result().paginate(:page => params[:page], :per_page => params[:per_page])
+
+        render :json =>  {
+            mate: {
+                page: params[:page],
+                per_page: params[:per_page]
+            },
+            data: data.map{|e|e.base_info},
+            status: {
+            code: 200,
+            msg: "成功"
+        },
+            err_no: 0,  
+        }, :status => 200
+    end
+    
+    def che300
+        data = { a: params[:a], b: params[:b], c: params[:c], d: params[:d]}
+        @detail = Che300::Info.create(
+              remark: data
+        )
+
+        render :json =>  {
+          data: @detail.id,
+          status: {
+            code: 200,
+            msg: "保存成功"
+          },
+          err_no: 0,
+        }, :status => 200
+    end
     def brand
         @brand = Tuhu::Brand.find_by(name: params[:name])
         if @brand.present?

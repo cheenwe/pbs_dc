@@ -1,7 +1,7 @@
 class Jz::User < ApplicationRecord
-    SHIXI_ID= [11, 19, 71, 25, 94, 89, 96, 36] 
+    SHIXI_NAME= ["马好亚", "黄璇琦", "刘俊飞"] 
 
-    scope :shixi, ->{ where(id:SHIXI_ID) }
+    scope :shixi, ->{ where(name:SHIXI_NAME) }
 
     has_many  :records, class_name: "Jz::Record", dependent: :destroy
     has_many  :sxes, class_name: "Jz::Sx", dependent: :destroy
