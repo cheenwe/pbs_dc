@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Qx Runways</h1>
+
+<table>
+  <tbody>
+      <tr>
+        <%= search_form_for @q do |f| %>
+          <td>
+            <%= f.label :name %>
+            <%= f.search_field :name_cont %>
+          </td>
+
+        <td>
+          <%= f.label :"检索" %>
+          <%= f.submit %>
+        </td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Airport</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @qx_runways.each do |qx_runway| %>
+      <tr>
+        <td><%= qx_runway.airport_id %></td>
+        <td><%= qx_runway.name %></td>
+        <td><%= link_to 'Show', qx_runway %></td>
+        <td><%= link_to 'Edit', edit_qx_runway_path(qx_runway) %></td>
+        <td><%= link_to 'Destroy', qx_runway, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Qx Runway', new_qx_runway_path %>
+
+
+<%= will_paginate @qx_runways %>

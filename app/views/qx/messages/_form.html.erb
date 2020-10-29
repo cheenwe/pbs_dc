@@ -1,0 +1,37 @@
+<%= form_with(model: qx_message, local: true) do |form| %>
+  <% if qx_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(qx_message.errors.count, "error") %> prohibited this qx_message from being saved:</h2>
+
+      <ul>
+      <% qx_message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :airport_id %>
+    <%= form.number_field :airport_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hour_tag %>
+    <%= form.datetime_select :hour_tag %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_field :value %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

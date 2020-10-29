@@ -1,0 +1,42 @@
+<%= form_with(model: qx_weather, local: true) do |form| %>
+  <% if qx_weather.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(qx_weather.errors.count, "error") %> prohibited this qx_weather from being saved:</h2>
+
+      <ul>
+      <% qx_weather.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :airport_id %>
+    <%= form.number_field :airport_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hour_tag %>
+    <%= form.text_field :hour_tag %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.number_field :value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.number_field :state %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @qx_info.name %>
+</p>
+
+<p>
+  <strong>Up at:</strong>
+  <%= @qx_info.up_at %>
+</p>
+
+<p>
+  <strong>Down at:</strong>
+  <%= @qx_info.down_at %>
+</p>
+
+<%= link_to 'Edit', edit_qx_info_path(@qx_info) %> |
+<%= link_to 'Back', qx_infos_path %>

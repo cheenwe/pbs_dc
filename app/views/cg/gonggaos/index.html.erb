@@ -1,0 +1,99 @@
+<style>
+  body {margin:5px;}
+  table {width:100%;font-size:14px}
+  th,td {padding:5px;text-align:left}
+  tr {border-bottom:1px solid #d6d6d6;padding:3px 5px;}
+  tr:hover {background:#c5e7fc}
+  .kind {margin-top:20px}
+  .form-control {width:200px;float:left;height:38px;margin-right:5px;}
+  .selectize-dropdown-content,.selectize-dropdown {height:auto}
+  .nowrap {white-space:nowrap;}
+</style>
+<h1><a href="/cg/gonggaos">采购公告</a> <small>合计:<%= @total_size %></small></h1>
+<% area = Cg::Gonggao.all.map{|e|e.area}.uniq %>
+
+
+<%= search_form_for @q do |f| %>
+
+  <%= f.search_field :title_cont, placeholder:"标题Title", type:"text", class: "form-control"%>
+  <%= f.search_field :buyer_cont, placeholder:"采购人Buyer", type:"text", class: "form-control"%>
+  <%= f.search_field :agent_cont, placeholder:"代理Agent", type:"text", class: "form-control"%>
+
+  <select class="form-control custom-select selectized" name="q[area_cont]" placeholder="区域"  id="area_cont">
+    <option value="" selected="selected"></option>
+    <%  Cg::Gonggao.get_areas.each do |item|%>
+      <option value="<%=item%>" ><%=item%></option>
+    <% end %>
+  </select>
+  <select class="form-control custom-select selectized" name="q[kind_cont]" placeholder="分类Kind" id="area_cont">
+    <option value="" selected="selected"></option>
+    <% Cg::Kind.where(is_show:1).each do |item|%>
+      <option value="<%=item.name%>" ><%=item.name%></option>
+    <% end %>
+  </select>
+  
+  
+  <%= f.search_field :date_at_gteq, placeholder:"开始", type:"date", class: "form-control"%>
+  <%= f.search_field :date_at_lteq, placeholder:"结束", type:"date", class: "form-control"%>
+
+  <%= f.submit "搜索" => "搜索", class: "btn btn-primary" %>
+  <%= link_to 'Reset', cg_gonggaos_path , class: "btn  btn-outline-default", 'data-disable-with' => "doing"%>
+  <a target="_blank" href="<%= request.url %>&export=1">导出</a>
+<% end %>
+
+<div class="kind">
+  <% Cg::Kind.where(is_show:1).each do |item| %>
+    <%= item.name %>
+  <% end %>
+  <a href="/cg/kinds" target="_blank">修改搜索分类</a>
+</div>
+
+<br>
+
+<table>
+  <thead class="nowrap">
+    <tr>
+      <th>ID</th>
+      <th>分类.Kind</th>
+      <th>标题.Title</th>
+      <th>日期.Date at</th>
+      <th>采购人.Buyer</th>
+      <!-- <th>代理.Agent</th> -->
+      <th>种类.Category</th>
+      <th>区域.Area</th>
+      <th>描述.Desc</th>
+      <th>URL.Url</th>
+      <th>类别.Key</th>
+      <th>创建时间</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cg_gonggaos.each_with_index do |cg_gonggao, index| %>
+      <tr>
+        <td class="nowrap"><%= index+1 %></td>
+        <td class="nowrap" title="<%= cg_gonggao.kind %>"><%= cg_gonggao.kind.first(10) %>...</td>
+        <td class="nowrap" title="<%= cg_gonggao.title %>"><%= cg_gonggao.title.first(16) %>...</td>
+        <td><%= cg_gonggao.date_at.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= cg_gonggao.buyer %></td>
+        <!-- <td><%= cg_gonggao.agent %></td> -->
+        <td><%= cg_gonggao.category %></td>
+        <td><%= cg_gonggao.area %></td>
+        <td style="width:500px" title="<%= cg_gonggao.desc %>"><%= cg_gonggao.desc.first(60) %>...</td>
+        <td><a target="_blank" href="<%= cg_gonggao.url %>"><%= cg_gonggao.url.last(10) %></td>
+        <td><%= cg_gonggao.key.name rescue '' %></td>
+        <td><%= cg_gonggao.created_at.strftime("%m-%d") rescue '' %></td>
+        <!-- <td><%= link_to 'Show', cg_gonggao %></td>
+        <td><%= link_to 'Edit', edit_cg_gonggao_path(cg_gonggao) %></td>
+        <td><%= link_to 'Destroy', cg_gonggao, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= will_paginate @cg_gonggaos %>
+<br>
+
+<%= link_to 'New Cg Gonggao', new_cg_gonggao_path %>

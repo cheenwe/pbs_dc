@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Airport:</strong>
+  <%= @qx_runway.airport_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @qx_runway.name %>
+</p>
+
+<%= link_to 'Edit', edit_qx_runway_path(@qx_runway) %> |
+<%= link_to 'Back', qx_runways_path %>

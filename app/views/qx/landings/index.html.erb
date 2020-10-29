@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Qx Landings</h1>
+
+<table>
+  <tbody>
+      <tr>
+        <%= search_form_for @q do |f| %>
+          <td>
+            <%= f.label :runway %>
+            <%= f.search_field :runway_cont %>
+          </td>
+
+        <td>
+          <%= f.label :"检索" %>
+          <%= f.submit %>
+        </td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Airport</th>
+      <th>Runway</th>
+      <th>Come near type</th>
+      <th>Come near normal</th>
+      <th>C kind</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @qx_landings.each do |qx_landing| %>
+      <tr>
+        <td><%= qx_landing.airport.airport_name %></td>
+        <td><%= qx_landing.runway %></td>
+        <td><%= qx_landing.come_near_type %></td>
+        <td><%= qx_landing.come_near_normal %></td>
+        <td><%= qx_landing.c_kind %></td>
+        <td><%= link_to 'Show', qx_landing %></td>
+        <td><%= link_to 'Edit', edit_qx_landing_path(qx_landing) %></td>
+        <td><%= link_to 'Destroy', qx_landing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Qx Landing', new_qx_landing_path %>
+
+<%= will_paginate @qx_landings %>
+

@@ -1,0 +1,103 @@
+<style type="text/css">
+  body {margin:10px;}
+</style>
+
+<h1>分类管理</h1>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>打勾表示显示该分类的公告, 否则隐藏</strong><br><br>
+  <strong>点 "X" 表示删除该分类</strong><br><br>
+  <strong>点击√恢复到待选区</strong>
+</div>
+
+<div class="row col-md-12" ng-init="initCgKind()">
+    <div class="col-lg-2">
+        <form id="new_reply" style="float:left;" action="/cg/kinds" accept-charset="UTF-8" data-remote="true" method="post">
+        <input type="hidden" name="data[is_show]" value="1">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">已选区</h3>
+            <button type="submit" style="float:right" class="btn btn-outline-primary" ng-click= "submitCgKind('false')" data-disable-with="提交到待选">提交到待选</button>
+
+          </div>
+          <div class="card-body">
+              <div style="float: left;width:100%" ng-repeat="kind in cg_kinds_true">
+                  <label class="custom-control custom-checkbox custom-control-inline">
+                      <input type="checkbox" class="custom-control-input" ng-model="kind.selected" ng-click="selectCgKind(true, kind)">
+                      <span class="custom-control-label">{{kind.name}}</span>
+                      <a rel="nofollow" data-method="put" title="删除"  style="float:right;margin-left:10px;color:#b3b3b3">X</a>
+                  </label>
+              </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">待选区</h3>
+            <button type="submit" style="float:right" class="btn btn-outline-primary" ng-click= "submitCgKind('true')" data-disable-with="提交到已选">提交到已选</button>
+            <a href="#" class="btn btn-outline-primary"  ng-click= "submitCgKind('nil')" data-disable-with="提交到删除">提交到删除</a>
+          </div>
+          <form id="new_reply" style="float:left;" action="/cg/kinds" accept-charset="UTF-8" data-remote="true" method="post">
+          <input type="hidden" name="data[is_show]" value="0">
+          <div class="card-body">
+              <div style="float: left;width:30%" ng-repeat="kind in cg_kinds_false">
+                  <label class="custom-control custom-checkbox custom-control-inline">
+                      <input type="checkbox" class="custom-control-input" ng-model="kind.selected" ng-click="selectCgKind(false, kind)">
+                      <span class="custom-control-label">{{kind.name}}</span>
+                      <a rel="nofollow" data-method="put" title="删除"  style="float:right;margin-left:10px;color:#b3b3b3">X</a>
+                  </label>
+              </div>
+          </div>
+        </div>
+        </form>
+    </div>
+
+    <div class="col-lg-2">
+        <form id="new_reply" style="float:left;" action="/cg/kinds" accept-charset="UTF-8" data-remote="true" method="post">
+        <input type="hidden" name="data[is_show]" value="-1">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">已删除</h3>
+            <button type="submit" style="float:right" class="btn btn-outline-primary" ng-click= "submitCgKind('false')" data-disable-with="提交到待选">提交到待选</button>
+          </div>
+          <div class="card-body">
+              <div style="float: left;width:100%" ng-repeat="kind in cg_kinds_nil">
+                  <label class="custom-control custom-checkbox custom-control-inline">
+                      <input type="checkbox" class="custom-control-input" ng-model="kind.selected" ng-click="selectCgKind('nil', kind)">
+                      <span class="custom-control-label">{{kind.name}}</span>
+                      <a rel="nofollow" data-method="put" title="删除"  style="float:right;margin-left:10px;color:#b3b3b3">X</a>
+                  </label>
+              </div>
+            
+          </div>
+        </div>
+        </form>
+    </div>
+
+</div>
+<br>
+<br>
+
+
+
+<%#= link_to 'New Cg Kind', new_cg_kind_path %>
+
+<script>
+    function save() {
+      name = document.getElementsByClassName("custom-control-input-not");
+      console.info(name)
+    }
+</script>
+<!-- $.ajax({
+  type: 'POST',
+  url: "create",
+  data: {name: name, data: context},
+  success: function (data) {
+    console.log(data["data"])
+    alert("保存成功,ID: " + data["data"])
+  },
+});
+myDiagram.isModified = false;
+} -->

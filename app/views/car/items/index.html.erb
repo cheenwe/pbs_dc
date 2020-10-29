@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Car Items<small> &nbsp;<%= @data.size %></small></h1>
+<form class="form-inline" action="items" accept-charset="UTF-8" method="get" style="margin-bottom:20px">
+  <input type="search" class="mr-3 form-control me-font-2" style="height:35px" name="q[name_cont]" placeholder="输入车款" value="" autocomplete="off">
+<button type="submit" class="btn btn-primary me-font-1">搜 索</button>
+</form>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Serie</th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Is sale</th>
+      <th>Is truck</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @car_items.each do |car_item| %>
+      <tr>
+        <td><%= car_item.serie_id %></td>
+        <td><%= car_item.code %></td>
+        <td><%= car_item.name %></td>
+        <td><%= car_item.url %></td>
+        <td><%= car_item.is_sale %></td>
+        <td><%= car_item.is_truck %></td>
+        <td><%= link_to 'Show', car_item %></td>
+        <td><%= link_to 'Edit', edit_car_item_path(car_item) %></td>
+        <td><%= link_to 'Destroy', car_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Car Item', new_car_item_path %>
+
+<%= will_paginate @car_items %>

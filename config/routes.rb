@@ -3,24 +3,15 @@ Rails.application.routes.draw do
   namespace :che300 do
     resources :infos
   end
+
   namespace :cn do
     resources :companies
   end
+
   namespace :monitor do
     resources :infos
-  end
-  namespace :monitor do
     resources :servers
-  end
-  match "jz" => "jz/users#jz", via: [:get, :post]
-  match "jz/sx" => "jz/sxes#sx", via: [:get, :post]
-  match "shixi" => "jz/sxes#sx", via: [:get, :post]
-
-  # 兼职信息管理
-  namespace :jz do
-    resources :records
-    resources :sxes
-    resources :users
+    resources :gpus
   end
 
   # 爬虫-途虎车辆数据及保养相关数据
@@ -30,9 +21,6 @@ Rails.application.routes.draw do
     resources :versions
     resources :brands
   end
-
-
-  match "tuhu" => "tuhu/brands#tuhu", via: [:get, :post]
 
   # 爬虫-天眼查数据
   namespace :tyc do
@@ -58,12 +46,66 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  # 气象数据爬取
+  namespace :qx do
+    resources :landings
+    resources :messages
+    resources :take_offs
+    resources :weathers
+    resources :runways
+    resources :airports
+    resources :infos
+  end
 
-  match "fc" => "jz/records#export", via: [:get]
+  # 采购公告
+  namespace :cg do
+    resources :kinds
+    resources :keys
+    resources :gonggaos
+  end
+
+
+  match "tuhu" => "tuhu/brands#tuhu", via: [:get, :post]
+
+  # 汽车数据
+  match "car" => "home#car", via: [:get]
+  match "car/details/search" => "car/details#search", via: [:get]
+  match "car/details/param" => "car/details#param", via: [:get]
+  match "car/pictures/search" => "car/pictures#search", via: [:get]
+  match "car/items/search" => "car/items#search", via: [:get]
+
+  namespace :car do
+    resources :brands
+    resources :items
+    resources :series
+    resources :pictures
+    resources :details
+    resources :configs
+  end
+
+  namespace :truck do
+    resources :brands
+    resources :series
+    resources :items
+    resources :pictures
+    resources :details
+    resources :configs
+  end
+
+  match "api/v1/qx/runway" => "qx#runway", via: [:post] # runway
+  match "api/v1/qx/weather" => "qx#weather", via: [:post] # weather
+  match "api/v1/qx/take_off" => "qx#take_off", via: [:post] # take_off
+  match "api/v1/qx/landing" => "qx#landing", via: [:post] # landing
+  match "api/v1/qx/message" => "qx#message", via: [:post] # message
+  match "qx" => "qx#qx", via: [:get] # weather
+  match "tuhu" => "tuhu/brands#tuhu", via: [:get, :post]
+  match "cg" => "home#cg", via: [:get, :post]
+
 
 
   # ====== for python
-  match "api/v1/monitor" => "api#monitor", via: [:post] #监测服务器数据 
+  match "api/v1/monitor" => "api#monitor", via: [:post] #监测服务器数据
+  match "api/v1/gpu" => "api#gpu", via: [:post] #监测服务器数据
   match "api/v1/uid" => "api#uid", via: [:get]
   match "api/v1/dc/users" => "api#dc_user", via: [:post]
   match "api/v1/dc/user/photos" => "api#dc_user_photos", via: [:post]
@@ -88,6 +130,11 @@ Rails.application.routes.draw do
   match "api/v1/tuhu/cid" => "tuhu#cid", via: [:post] # 车型信息
   match "api/v1/tuhu/request_cid" => "tuhu#request_cid", via: [:get] # 车型信息
 
+
+  #采购公告
+  match "api/v1/cg", to: 'cg#gonggao', via: [:post]
+  match "/api/v1/cg/kinds/list" => "cg/kinds#list", via: [:get, :post]
+  match "/cg/kinds/list" => "cg/kinds#list", via: [:get]
 
   # ====== for python
 
@@ -120,7 +167,7 @@ Rails.application.routes.draw do
   #公司
   match "api/company" => "tyc#company", via: [:get]
   match "api/company1" => "tyc#company1", via: [:get]
-  
+
   #驾照
   match "api/driving_license" => "ocr#driving_license", via: [:get]
   #小写数字
@@ -143,9 +190,7 @@ Rails.application.routes.draw do
   match "api/zhengzhipiao" => "ocr/danju#zhengzhipiao", via: [:get]
   #转账支票
   match "api/zhipiao" => "ocr/danju#zhipiao", via: [:get]
-  match "api/jz/today" => "jz/records#today", via: [:get]
-  
 
 
-  root "jz/users#jz"
+  root "home#index"
 end

@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Qx Weathers</h1>
+
+<table>
+  <tbody>
+      <tr>
+        <%= search_form_for @q do |f| %>
+          <td>
+            <%= f.label :airport_id %>
+            <%= f.search_field :airport_airport_name_cont %> 
+          </td>
+
+          <td>
+            <%= f.label :"检索" %>
+            <%= f.submit %>
+          </td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>AirportID</th>
+      <th>Airport</th>
+      <th>Hour tag</th>
+      <th>Value</th>
+      <th>Content</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @qx_weathers.each do |qx_weather| %>
+      <tr>
+        <td><%= qx_weather.airport_id rescue ''%></td>
+        <td><%= qx_weather.airport.airport_name rescue ''%></td>
+        <td><%= qx_weather.hour_tag %></td>
+        <td><%= qx_weather.value %></td>
+        <td><%= qx_weather.content %></td>
+        <td><%= qx_weather.state %></td>
+        <td><%= link_to 'Show', qx_weather %></td>
+        <td><%= link_to 'Edit', edit_qx_weather_path(qx_weather) %></td>
+        <td><%= link_to 'Destroy', qx_weather, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Qx Weather', new_qx_weather_path %>
+
+
+<%= will_paginate @qx_weathers %>

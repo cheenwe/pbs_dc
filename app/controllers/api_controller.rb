@@ -100,11 +100,11 @@ class ApiController < ActionController::API
 
 
   # 分配uid
-  # need 需要多少id 1000 , 2000 
+  # need 需要多少id 1000 , 2000
   # remark 那个爬虫信息 xxxx
   def uid
     @uid = Uid.last
-    if @uid.present?  
+    if @uid.present?
       current_num = @uid.number
       add_size = params[:need].to_f || 1000
       number = current_num + add_size
@@ -148,13 +148,13 @@ class ApiController < ActionController::API
       @server = Monitor::Server.create(ip: params[:ip])
     end
 
-    server_id = @server.id 
+    server_id = @server.id
 
     @info = Monitor::Info.create(
       server_id: server_id,
       remark: params[:data],
     )
-    
+
     render :json =>  {
       status: {
         code: 200,
@@ -162,6 +162,41 @@ class ApiController < ActionController::API
       },
       err_no: 0,
     }, :status => 200
-  
-  end 
+
+  end
+
+
+  #def monitor
+  #p params[:id]
+  #p params[:data]
+  #end
+  # 监控服务器温度信息
+  #  ip 服务器 ip
+  #  data 数据信息
+  def gpu
+    p request.ip
+    @server = Monitor::Server.find_by(ip: params[:ip])
+    if @server.present?
+      server_id = @server.id
+    else
+      @server = Monitor::Server.create(ip: params[:ip])
+    end
+
+    server_id = @server.id
+
+    @info = Monitor::Gpu.create(
+      server_id: server_id,
+      info: params[:data],
+    )
+
+    render :json =>  {
+      status: {
+        code: 200,
+        msg: "成功"
+      },
+      err_no: 0,
+    }, :status => 200
+
+  end
+
 end

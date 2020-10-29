@@ -1,0 +1,67 @@
+<%= form_with(model: cg_gonggao, local: true) do |form| %>
+  <% if cg_gonggao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cg_gonggao.errors.count, "error") %> prohibited this cg_gonggao from being saved:</h2>
+
+      <ul>
+      <% cg_gonggao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :kind %>
+    <%= form.text_field :kind %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_at %>
+    <%= form.datetime_select :date_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :buyer %>
+    <%= form.text_field :buyer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :agent %>
+    <%= form.text_field :agent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div class="field">
+    <%= form.label :area %>
+    <%= form.text_field :area %>
+  </div>
+
+  <div class="field">
+    <%= form.label :desc %>
+    <%= form.text_area :desc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :key %>
+    <%= form.number_field :key %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

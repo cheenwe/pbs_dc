@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Car Configs<small> &nbsp;<%= @data.size %></small></h1>
+<form class="form-inline" action="configs" accept-charset="UTF-8" method="get" style="margin-bottom:20px">
+  <input type="search" class="mr-3 form-control me-font-2" style="height:35px" name="q[name_cont]" placeholder="输入参数名" value="" autocomplete="off">
+<button type="submit" class="btn btn-primary me-font-1">搜 索</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @car_configs.each do |car_config| %>
+      <tr>
+        <td><%= car_config.name %></td>
+        <td><%= link_to 'Show', car_config %></td>
+        <td><%= link_to 'Edit', edit_car_config_path(car_config) %></td>
+        <td><%= link_to 'Destroy', car_config, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Car Config', new_car_config_path %>
+
+<%= will_paginate @car_configs %>

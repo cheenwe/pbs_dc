@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1><a href="/qx/infos">Qx Infos</a></h1>
+
+  <%= search_form_for @q do |f| %>
+    <%= f.search_field :up_at_eq, placeholder: "up_at" ,  type:"date"%>
+    <%= f.search_field :down_at_eq, placeholder: "down_at" ,  type:"date"%>
+
+    <%= f.submit "搜索" => "搜索" %>
+  <% end %>
+
+
+  <form class="qx/liuliang" id="qx/liuliang" action="/qx/liuliang" accept-charset="UTF-8" method="get">
+    <input placeholder="date" type="date" name="date" id="date">
+
+    <input type="submit" name="commit" value="Search" 搜索="搜索" data-disable-with="Search">
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Up at</th>
+      <th>Down at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @qx_infos.each do |qx_info| %>
+      <tr>
+        <td><%= qx_info.name %></td>
+        <td><%= qx_info.up_at.strftime("%Y-%m-%d %H:%M") rescue '' %></td>
+        <td><%= qx_info.down_at.strftime("%Y-%m-%d %H:%M") rescue '' %></td>
+        <td><%= link_to 'Show', qx_info %></td>
+        <td><%= link_to 'Edit', edit_qx_info_path(qx_info) %></td>
+        <td><%= link_to 'Destroy', qx_info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= will_paginate @qx_infos %>
+<br>
+<%= link_to 'New Qx Info', new_qx_info_path %>

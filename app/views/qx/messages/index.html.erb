@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Qx Messages</h1>
+
+<table>
+  <tbody>
+      <tr>
+        <%= search_form_for @q do |f| %>
+          <td>
+            <%= f.label :airport_id %>
+            <%= f.search_field :airport_airport_name_cont %>
+          </td>
+          <td>
+            <%= f.label :content %>
+            <%= f.search_field :content_cont %>
+          </td>
+
+        <td>
+          <%= f.label :"检索" %>
+          <%= f.submit %>
+        </td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Airport</th>
+      <th>Content</th>
+      <th>Hour tag</th>
+      <th>Value</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @qx_messages.each do |qx_message| %>
+      <tr>
+        <td><%= qx_message.airport.airport_name %></td>
+        <td><%= qx_message.content %></td>
+        <td><%= qx_message.hour_tag %></td>
+        <td><%= qx_message.value %></td>
+        <td><%= qx_message.state %></td>
+        <td><%= link_to 'Show', qx_message %></td>
+        <td><%= link_to 'Edit', edit_qx_message_path(qx_message) %></td>
+        <td><%= link_to 'Destroy', qx_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Qx Message', new_qx_message_path %>
+
+<%= will_paginate @qx_messages %>

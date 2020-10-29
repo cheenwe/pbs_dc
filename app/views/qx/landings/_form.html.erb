@@ -1,0 +1,42 @@
+<%= form_with(model: qx_landing, local: true) do |form| %>
+  <% if qx_landing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(qx_landing.errors.count, "error") %> prohibited this qx_landing from being saved:</h2>
+
+      <ul>
+      <% qx_landing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :airport_id %>
+    <%= form.number_field :airport_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :runway %>
+    <%= form.text_field :runway %>
+  </div>
+
+  <div class="field">
+    <%= form.label :come_near_type %>
+    <%= form.text_field :come_near_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :come_near_normal %>
+    <%= form.text_field :come_near_normal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :c_kind %>
+    <%= form.text_field :c_kind %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

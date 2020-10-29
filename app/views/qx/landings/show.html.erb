@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Airport:</strong>
+  <%= @qx_landing.airport_id %>
+</p>
+
+<p>
+  <strong>Runway:</strong>
+  <%= @qx_landing.runway %>
+</p>
+
+<p>
+  <strong>Come near type:</strong>
+  <%= @qx_landing.come_near_type %>
+</p>
+
+<p>
+  <strong>Come near normal:</strong>
+  <%= @qx_landing.come_near_normal %>
+</p>
+
+<p>
+  <strong>C kind:</strong>
+  <%= @qx_landing.c_kind %>
+</p>
+
+<%= link_to 'Edit', edit_qx_landing_path(@qx_landing) %> |
+<%= link_to 'Back', qx_landings_path %>

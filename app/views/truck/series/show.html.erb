@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @truck_series.brand_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @truck_series.name %>
+</p>
+
+<%= link_to 'Edit', edit_truck_series_path(@truck_series) %> |
+<%= link_to 'Back', truck_series_path %>

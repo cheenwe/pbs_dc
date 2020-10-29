@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_033012) do
+ActiveRecord::Schema.define(version: 2020_10_29_110336) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -34,48 +34,106 @@ ActiveRecord::Schema.define(version: 2019_06_24_033012) do
   end
 
   create_table "attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.string "link"
-    t.string "file"
-    t.integer "modelable_id"
-    t.string "modelable_type"
-    t.integer "user_id"
-    t.datetime "created_at"
-    t.string "type"
-    t.index ["modelable_id", "modelable_type"], name: "index_attachments_on_modelable_id_and_modelable_type"
-    t.index ["user_id"], name: "index_attachments_on_user_id"
+    t.string "uuid"
+    t.string "qrcord"
+    t.string "zip_url"
+    t.string "short_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "audit_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "modelable_type"
-    t.bigint "modelable_id"
-    t.integer "user_id"
-    t.string "username"
-    t.integer "state"
+  create_table "car_brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "abbr"
+    t.string "name"
+    t.string "logo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "car_configs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "car_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "config_id"
+    t.integer "key"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "car_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "serie_id"
+    t.integer "code"
+    t.string "name"
+    t.string "url"
+    t.boolean "is_sale"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_truck"
+    t.index ["code"], name: "index_car_items_on_code"
+    t.index ["serie_id"], name: "index_car_items_on_serie_id"
+  end
+
+  create_table "car_pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "item_id"
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "imgpath"
+    t.index ["item_id"], name: "index_car_pictures_on_item_id"
+  end
+
+  create_table "car_series", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "brand_id"
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "code"
+    t.index ["brand_id"], name: "index_car_series_on_brand_id"
+  end
+
+  create_table "cg_gonggaos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "kind"
+    t.string "title"
+    t.datetime "date_at"
+    t.string "buyer"
+    t.string "agent"
+    t.string "category"
+    t.string "area"
+    t.text "desc"
+    t.string "url"
+    t.integer "key_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cg_gonggaos_kinds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "kind_id"
+    t.integer "gonggao_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gonggao_id"], name: "index_cg_gonggaos_kinds_on_gonggao_id"
+    t.index ["kind_id"], name: "index_cg_gonggaos_kinds_on_kind_id"
+  end
+
+  create_table "cg_keys", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
     t.string "remark"
-    t.string "leavel_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "show", default: false
-    t.index ["modelable_type", "modelable_id"], name: "index_audit_items_on_modelable_type_and_modelable_id"
   end
 
-  create_table "auditors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "audit_id"
-    t.bigint "user_id"
-    t.integer "level"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "kind", default: 1
-    t.index ["audit_id"], name: "index_auditors_on_audit_id"
-    t.index ["user_id"], name: "index_auditors_on_user_id"
-  end
-
-  create_table "audits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "cg_kinds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.text "flow"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_show", default: false
   end
 
   create_table "che300_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -99,28 +157,47 @@ ActiveRecord::Schema.define(version: 2019_06_24_033012) do
     t.index ["used"], name: "index_cn_companies_on_used"
   end
 
-  create_table "core_areas", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "core_areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "code"
     t.string "name"
     t.string "city_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_code"], name: "index_core_areas_on_city_code"
   end
 
-  create_table "core_cities", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "core_cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "code"
     t.string "name"
     t.string "province_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["province_code"], name: "index_core_cities_on_province_code"
   end
 
-  create_table "core_provinces", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "core_provinces", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "code"
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "core_streets", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "core_streets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "code"
     t.string "name"
     t.string "area_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_code"], name: "index_core_streets_on_area_code"
   end
 
-  create_table "core_villages", primary_key: "code", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "core_villages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "code"
     t.string "name"
     t.string "street_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["street_code"], name: "index_core_villages_on_street_code"
   end
 
   create_table "dc_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -141,26 +218,6 @@ ActiveRecord::Schema.define(version: 2019_06_24_033012) do
     t.datetime "updated_at", null: false
     t.boolean "has_photo"
     t.index ["uid"], name: "index_dc_users_on_uid"
-  end
-
-  create_table "exception_tracks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "record_type"
-    t.bigint "record_id"
-    t.bigint "user_id"
-    t.string "action", null: false
-    t.text "modify"
-    t.integer "version", default: 0, null: false
-    t.string "remote_ip", default: "0"
-    t.datetime "created_at", null: false
-    t.index ["record_type", "record_id"], name: "index_histories_on_record_type_and_record_id"
-    t.index ["user_id"], name: "index_histories_on_user_id"
   end
 
   create_table "hz_banks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -234,35 +291,6 @@ ActiveRecord::Schema.define(version: 2019_06_24_033012) do
     t.string "id_card"
   end
 
-  create_table "licenses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "mac"
-    t.string "sn"
-    t.integer "user_id"
-    t.date "start_at"
-    t.date "end_at"
-    t.string "remote_ip"
-    t.string "remark"
-    t.text "result"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "uuid", limit: 32
-    t.index ["user_id"], name: "index_licenses_on_user_id"
-    t.index ["uuid"], name: "index_licenses_on_uuid"
-  end
-
-  create_table "logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "type"
-    t.string "record_type"
-    t.bigint "record_id"
-    t.bigint "user_id"
-    t.string "action", null: false
-    t.text "body"
-    t.string "remote_ip", default: "0"
-    t.datetime "created_at", null: false
-    t.index ["record_type", "record_id"], name: "index_logs_on_record_type_and_record_id"
-    t.index ["user_id"], name: "index_logs_on_user_id"
-  end
-
   create_table "monitor_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "server_id"
     t.text "info"
@@ -280,167 +308,71 @@ ActiveRecord::Schema.define(version: 2019_06_24_033012) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "nodes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "summary"
-    t.integer "section_id", null: false
-    t.integer "sort", default: 0, null: false
-    t.integer "topics_count", default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["section_id"], name: "index_nodes_on_section_id"
-    t.index ["sort"], name: "index_nodes_on_sort"
+  create_table "qx_airports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "city_name"
+    t.string "airport_3_code"
+    t.string "city_ch_ame"
+    t.string "country_name"
+    t.string "airport_4_code"
+    t.string "airport_name"
+    t.string "english_name"
+    t.float "longgitude"
+    t.float "latitude"
+    t.datetime "created_at", null: false
   end
 
-  create_table "page_versions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "page_id", null: false
-    t.integer "version", default: 0, null: false
-    t.string "slug", null: false
-    t.string "title", null: false
-    t.text "desc", null: false
-    t.text "body", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["page_id"], name: "index_page_versions_on_page_id"
-  end
-
-  create_table "pages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "node_id", null: false
-    t.string "node_name"
-    t.string "type"
-    t.string "slug"
-    t.string "title", null: false
-    t.text "body", null: false
-    t.boolean "locked", default: false
-    t.integer "excellent", default: 0
-    t.datetime "replied_at"
-    t.integer "replies_count", default: 0, null: false
-    t.integer "likes_count", default: 0
-    t.integer "mentioned_user_ids"
-    t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "team_id"
-    t.integer "version", default: 0, null: false
-    t.string "change_desc"
-    t.index ["deleted_at"], name: "index_pages_on_deleted_at"
-    t.index ["excellent"], name: "index_pages_on_excellent"
-    t.index ["likes_count"], name: "index_pages_on_likes_count"
-    t.index ["node_id"], name: "index_pages_on_node_id"
-    t.index ["slug"], name: "index_pages_on_slug", unique: true
-    t.index ["team_id"], name: "index_pages_on_team_id"
-    t.index ["type"], name: "index_pages_on_type"
-    t.index ["user_id"], name: "index_pages_on_user_id"
-  end
-
-  create_table "permissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", limit: 30, default: "", null: false
-    t.string "string", limit: 30, default: "", null: false
-    t.string "actions", default: "", null: false
-    t.string "ctrl", default: "", null: false
-    t.boolean "manage", default: false, null: false
-    t.boolean "own", default: false, null: false
-    t.boolean "department", default: false, null: false
-    t.boolean "core", default: false, null: false
-  end
-
-  create_table "permissions_roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "role_id"
-    t.integer "permission_id"
-    t.index ["permission_id"], name: "index_permissions_roles_on_permission_id"
-    t.index ["role_id"], name: "index_permissions_roles_on_role_id"
-  end
-
-  create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "qx_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.string "abbr"
+    t.datetime "up_at"
+    t.datetime "down_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "projects_version_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "projects_version_id"
-    t.integer "user_id"
-    t.index ["projects_version_id"], name: "index_projects_version_users_on_projects_version_id"
-    t.index ["user_id"], name: "index_projects_version_users_on_user_id"
-  end
-
-  create_table "projects_versions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "code"
-    t.integer "project_id"
-    t.string "number"
-    t.date "release_at"
-    t.string "release_note"
-    t.string "full_package"
-    t.string "increase_package"
-    t.string "upgrade_step"
-    t.text "remark"
-    t.integer "user_id"
+  create_table "qx_landings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "airport_id"
+    t.string "runway"
+    t.string "come_near_type"
+    t.string "come_near_normal"
+    t.string "c_kind"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_projects_versions_on_project_id"
+    t.integer "runway_id"
   end
 
-  create_table "replies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "page_id", null: false
-    t.text "body", null: false
-    t.integer "state", default: 1, null: false
-    t.integer "likes_count", default: 0
-    t.integer "mentioned_user_ids"
-    t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "action"
-    t.integer "reply_to_id"
-    t.index ["deleted_at"], name: "index_replies_on_deleted_at"
-    t.index ["page_id"], name: "index_replies_on_page_id"
-    t.index ["user_id"], name: "index_replies_on_user_id"
+  create_table "qx_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "airport_id"
+    t.string "content"
+    t.datetime "hour_tag"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.integer "state"
   end
 
-  create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "qx_runways", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "airport_id"
     t.string "name"
-    t.integer "position"
-    t.text "permission"
-    t.integer "user_id"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "permission_ids"
   end
 
-  create_table "sections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "sort", default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["sort"], name: "index_sections_on_sort"
+  create_table "qx_take_offs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "airport_id"
+    t.string "runway"
+    t.string "aircraft_type"
+    t.string "hirl_rcls"
+    t.string "hirl"
+    t.string "hirl_rcls_stop"
+    t.string "lights"
+    t.datetime "created_at", null: false
+    t.integer "runway_id"
   end
 
-  create_table "settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "var", null: false
-    t.text "value"
-    t.integer "thing_id"
-    t.string "thing_type", limit: 30
+  create_table "qx_weathers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "airport_id"
+    t.datetime "hour_tag"
+    t.integer "value"
+    t.string "content"
+    t.integer "state"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
-  end
-
-  create_table "tickets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "user_id"
-    t.string "name"
-    t.string "reason"
-    t.string "requirement"
-    t.text "remark"
-    t.integer "state", default: 0, null: false
-    t.integer "audit_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_tickets_on_project_id"
-    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
   create_table "tuhu_brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -602,74 +534,4 @@ ActiveRecord::Schema.define(version: 2019_06_24_033012) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["role_id"], name: "index_user_roles_on_role_id"
-    t.index ["user_id"], name: "index_user_roles_on_user_id"
-  end
-
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.integer "failed_attempts", default: 0, null: false
-    t.string "unlock_token"
-    t.datetime "locked_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "avatar"
-    t.string "name"
-    t.string "address"
-    t.string "job"
-    t.string "department"
-    t.string "phone"
-    t.string "code"
-    t.string "province"
-    t.string "city"
-    t.string "bio"
-    t.integer "state", limit: 1, default: 0
-    t.integer "user_id"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["state", "id"], name: "index_users_on_state_and_id"
-    t.index ["state"], name: "index_users_on_state"
-    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
-  end
-
-  create_table "vehicle_applies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "ownerName"
-    t.string "zipCode"
-    t.string "zipAddress"
-    t.string "phoneNum"
-    t.string "fixedNum"
-    t.string "agentName"
-    t.string "agentPhone"
-    t.string "plateType"
-    t.string "plateNum"
-    t.string "flapper"
-    t.string "vehicle"
-    t.string "register"
-    t.string "checkMark"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-  end
-
-  add_foreign_key "tickets", "projects"
-  add_foreign_key "tickets", "users"
 end

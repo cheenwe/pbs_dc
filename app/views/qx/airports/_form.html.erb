@@ -1,0 +1,62 @@
+<%= form_with(model: qx_airport, local: true) do |form| %>
+  <% if qx_airport.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(qx_airport.errors.count, "error") %> prohibited this qx_airport from being saved:</h2>
+
+      <ul>
+      <% qx_airport.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :city_name %>
+    <%= form.text_field :city_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :airport_3_code %>
+    <%= form.text_field :airport_3_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city_ch_ame %>
+    <%= form.text_field :city_ch_ame %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country_name %>
+    <%= form.text_field :country_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :airport_4_code %>
+    <%= form.text_field :airport_4_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :airport_name %>
+    <%= form.text_field :airport_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :english_name %>
+    <%= form.text_field :english_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :longgitude %>
+    <%= form.text_field :longgitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

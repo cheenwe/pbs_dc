@@ -1,0 +1,57 @@
+<%= form_with(model: qx_take_off, local: true) do |form| %>
+  <% if qx_take_off.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(qx_take_off.errors.count, "error") %> prohibited this qx_take_off from being saved:</h2>
+
+      <ul>
+      <% qx_take_off.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :airport_id %>
+    <%= form.number_field :airport_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :runway %>
+    <%= form.text_field :runway %>
+  </div>
+
+  <div class="field">
+    <%= form.label :airport_4_code %>
+    <%= form.text_field :airport_4_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aircraft_type %>
+    <%= form.text_field :aircraft_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hirl_rcls %>
+    <%= form.text_field :hirl_rcls %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hirl %>
+    <%= form.text_field :hirl %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hirl_rcls_stop %>
+    <%= form.text_field :hirl_rcls_stop %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lights %>
+    <%= form.text_field :lights %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

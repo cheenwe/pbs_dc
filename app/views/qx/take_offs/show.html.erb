@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Airport:</strong>
+  <%= @qx_take_off.airport_id %>
+</p>
+
+<p>
+  <strong>Runway:</strong>
+  <%= @qx_take_off.runway %>
+</p>
+
+<p>
+  <strong>Aircraft type:</strong>
+  <%= @qx_take_off.aircraft_type %>
+</p>
+
+<p>
+  <strong>Hirl rcls:</strong>
+  <%= @qx_take_off.hirl_rcls %>
+</p>
+
+<p>
+  <strong>Hirl:</strong>
+  <%= @qx_take_off.hirl %>
+</p>
+
+<p>
+  <strong>Hirl rcls stop:</strong>
+  <%= @qx_take_off.hirl_rcls_stop %>
+</p>
+
+<p>
+  <strong>Lights:</strong>
+  <%= @qx_take_off.lights %>
+</p>
+
+<%= link_to 'Edit', edit_qx_take_off_path(@qx_take_off) %> |
+<%= link_to 'Back', qx_take_offs_path %>

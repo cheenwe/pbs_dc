@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Airport:</strong>
+  <%= @qx_message.airport_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @qx_message.content %>
+</p>
+
+<p>
+  <strong>Hour tag:</strong>
+  <%= @qx_message.hour_tag %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @qx_message.value %>
+</p>
+
+<%= link_to 'Edit', edit_qx_message_path(@qx_message) %> |
+<%= link_to 'Back', qx_messages_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cg_kind.name %>
+</p>
+
+<p>
+  <strong>Is show:</strong>
+  <%= @cg_kind.is_show %>
+</p>
+
+<%= link_to 'Edit', edit_cg_kind_path(@cg_kind) %> |
+<%= link_to 'Back', cg_kinds_path %>

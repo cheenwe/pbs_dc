@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Car Series<small> &nbsp;<%= @data.size %></small></h1>
+<form class="form-inline" action="series" accept-charset="UTF-8" method="get" style="margin-bottom:20px">
+  <input type="search" class="mr-3 form-control me-font-2" style="height:35px" name="q[name_cont]" placeholder="输入车系" value="" autocomplete="off">
+<button type="submit" class="btn btn-primary me-font-1">搜 索</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Name</th>
+      <th>Url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @car_series.each do |car_series| %>
+      <tr>
+        <td><%= car_series.brand_id %></td>
+        <td><%= car_series.name %></td>
+        <td><%= car_series.url %></td>
+        <td><%= link_to 'Show', car_series %></td>
+        <td><%= link_to 'Edit', edit_car_series_path(car_series) %></td>
+        <td><%= link_to 'Destroy', car_series, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Car Series', new_car_series_path %>
+
+<%= will_paginate @car_series %>

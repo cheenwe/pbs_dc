@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cg Keys</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Remark</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cg_keys.each do |cg_key| %>
+      <tr>
+        <td><%= cg_key.name %></td>
+        <td><%= cg_key.remark %></td>
+        <td><%= link_to 'Show', cg_key %></td>
+        <td><%= link_to 'Edit', edit_cg_key_path(cg_key) %></td>
+        <td><%= link_to 'Destroy', cg_key, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cg Key', new_cg_key_path %>

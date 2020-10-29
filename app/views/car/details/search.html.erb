@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+<h1><a href='search'>Car Details</a></h1>
+<form class="form-inline" action="search" accept-charset="UTF-8" method="get" style="margin-bottom:20px">
+  <input type="search" class="mr-3 form-control me-font-2" style="height:35px" name="q[brand_name_cont]" placeholder="输入品牌" value="" autocomplete="off">
+  <input type="search" class="mr-3 form-control me-font-2" style="height:35px" name="q[serie_name_cont]" placeholder="输入车系" value="" autocomplete="off">
+  <input type="search" class="mr-3 form-control me-font-2" style="height:35px" name="q[item_name_cont]" placeholder="输入车款" value="" autocomplete="off">
+  <input type="search" class="mr-3 form-control me-font-2" style="height:35px" name="q[param_name_cont]" placeholder="输入参数名" value="" autocomplete="off">
+  <input type="search" class="mr-3 form-control me-font-2" style="height:35px" name="q[item_id_eq]" placeholder="输入item_id" value="" autocomplete="off">
+  <button type="submit" class="btn btn-primary me-font-1">搜 索</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>首字母</th>
+      <th>品牌</th>
+      <th>车系</th>
+      <th>车款id</th>
+      <th>车款</th>
+      <th>参数名</th>
+      <th>参数值</th>
+      <!-- <th colspan="3"></th> -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @car_params.each do |car_detail| %>
+      <tr>
+        <td><%= car_detail.abbr %></td>
+        <td><%= car_detail.brand_name %></td>
+        <td><%= car_detail.serie_name %></td>
+        <td><%= car_detail.item_id %></td>        
+        <td><%= car_detail.item_name %></td>
+        <td><%= car_detail.param_name %></td>
+        <td><%= car_detail.value %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Car Detail', new_car_detail_path %>
+
+<%#= will_paginate @car_params %>

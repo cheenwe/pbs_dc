@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Airport:</strong>
+  <%= @qx_weather.airport_id %>
+</p>
+
+<p>
+  <strong>Hour tag:</strong>
+  <%= @qx_weather.hour_tag %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @qx_weather.value %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @qx_weather.content %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @qx_weather.state %>
+</p>
+
+<%= link_to 'Edit', edit_qx_weather_path(@qx_weather) %> |
+<%= link_to 'Back', qx_weathers_path %>

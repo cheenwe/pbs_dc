@@ -1,0 +1,27 @@
+
+<table>
+<thead>
+<tr>
+  <th>时间</th> 
+
+  <% @hash.each do |item| %>
+    <th><%= item[:hour] %></th>
+  <% end %>
+</tr>
+</thead>
+<tbody>
+    <tr>
+        <td>起飞数</td>
+
+        <% @hash.each do |item| %>
+        <td><%= item[:up_size] %></td>
+        <% end %>
+    </tr>
+    <tr>
+        <td>降落数</td>
+        <% @hash.each do |item| %>
+        <td><%= item[:down_size]  %></td>
+        <% end %>
+    </tr>
+</tbody>
+</table>

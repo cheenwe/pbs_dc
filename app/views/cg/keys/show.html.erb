@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cg_key.name %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @cg_key.remark %>
+</p>
+
+<%= link_to 'Edit', edit_cg_key_path(@cg_key) %> |
+<%= link_to 'Back', cg_keys_path %>

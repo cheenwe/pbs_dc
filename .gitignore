@@ -34,3 +34,13 @@ package-lock.json
 yarn.lock
 
 config/config.yml
+config/database.yml
+
+storage/
+db/schema.rb
+test/
+public/uploads/
+public/system/
+.idea/
+public/media/
+public/fonts/

@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Qx Take Offs</h1>
+
+
+<table>
+  <tbody>
+      <tr>
+        <%= search_form_for @q do |f| %>
+          <td>
+            <%= f.label :runway %>
+            <%= f.search_field :runway_cont %>
+          </td>
+          <td>
+            <%= f.label :aircraft_type %>
+            <%= f.search_field :aircraft_type_cont %>
+          </td>
+
+        <td>
+          <%= f.label :"检索" %>
+          <%= f.submit %>
+        </td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Airport</th>
+      <th>Runway_ID</th>
+      <th>Runway</th>
+      <th>Aircraft type</th>
+      <th>Hirl rcls</th>
+      <th>Hirl</th>
+      <th>Hirl rcls stop</th>
+      <th>Lights</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @qx_take_offs.each do |qx_take_off| %>
+      <tr>
+        <td><%= qx_take_off.airport.airport_name %></td>
+        <td><%= qx_take_off.runway_id %></td>
+        <td><%= qx_take_off.runway %></td>
+        <td><%= qx_take_off.aircraft_type %></td>
+        <td><%= qx_take_off.hirl_rcls %></td>
+        <td><%= qx_take_off.hirl %></td>
+        <td><%= qx_take_off.hirl_rcls_stop %></td>
+        <td><%= qx_take_off.lights %></td>
+        <td><%= link_to 'Show', qx_take_off %></td>
+        <td><%= link_to 'Edit', edit_qx_take_off_path(qx_take_off) %></td>
+        <td><%= link_to 'Destroy', qx_take_off, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Qx Take Off', new_qx_take_off_path %>
+
+<%= will_paginate @qx_take_offs %>
