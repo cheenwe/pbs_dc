@@ -6,6 +6,6 @@ class CreateQxInfos < ActiveRecord::Migration[5.2]
       t.datetime :down_at
 
       t.timestamps
-    end
+    end unless table_exists? :qx_infos
   end
 end

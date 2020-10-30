@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_110336) do
+ActiveRecord::Schema.define(version: 2020_10_30_073750) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -46,23 +46,23 @@ ActiveRecord::Schema.define(version: 2020_10_29_110336) do
     t.string "abbr"
     t.string "name"
     t.string "logo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "car_configs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "car_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "item_id"
     t.integer "config_id"
     t.integer "key"
-    t.string "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "value", limit: 1000
+  end
+
+  create_table "car_firm", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "abbr"
+    t.string "brand_name"
+    t.string "serie_name"
   end
 
   create_table "car_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -71,8 +71,6 @@ ActiveRecord::Schema.define(version: 2020_10_29_110336) do
     t.string "name"
     t.string "url"
     t.boolean "is_sale"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.boolean "is_truck"
     t.index ["code"], name: "index_car_items_on_code"
     t.index ["serie_id"], name: "index_car_items_on_serie_id"
@@ -82,9 +80,8 @@ ActiveRecord::Schema.define(version: 2020_10_29_110336) do
     t.integer "item_id"
     t.string "name"
     t.string "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "imgpath"
+    t.integer "config_id"
     t.index ["item_id"], name: "index_car_pictures_on_item_id"
   end
 
@@ -92,8 +89,6 @@ ActiveRecord::Schema.define(version: 2020_10_29_110336) do
     t.integer "brand_id"
     t.string "name"
     t.string "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "code"
     t.index ["brand_id"], name: "index_car_series_on_brand_id"
   end
@@ -134,6 +129,12 @@ ActiveRecord::Schema.define(version: 2020_10_29_110336) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_show", default: false
+  end
+
+  create_table "changshang", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "abbr"
+    t.string "brand_name"
+    t.string "serie_name"
   end
 
   create_table "che300_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -291,6 +292,15 @@ ActiveRecord::Schema.define(version: 2020_10_29_110336) do
     t.string "id_card"
   end
 
+  create_table "monitor_gpus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "server_id"
+    t.integer "free_num"
+    t.string "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["server_id"], name: "index_monitor_gpus_on_server_id"
+  end
+
   create_table "monitor_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "server_id"
     t.text "info"
@@ -321,7 +331,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_110336) do
     t.datetime "created_at", null: false
   end
 
-  create_table "qx_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "qx_infos", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.datetime "up_at"
     t.datetime "down_at"
@@ -373,6 +383,53 @@ ActiveRecord::Schema.define(version: 2020_10_29_110336) do
     t.string "content"
     t.integer "state"
     t.datetime "created_at", null: false
+  end
+
+  create_table "truck_brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "abbr"
+    t.string "name"
+    t.string "logo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "truck_configs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "truck_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "config_id"
+    t.string "value", limit: 1000
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "truck_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "serie_id"
+    t.integer "code"
+    t.string "name"
+    t.string "url"
+    t.integer "is_sale"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "truck_pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "item_id"
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "truck_series", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "brand_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tuhu_brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
