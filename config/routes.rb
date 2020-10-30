@@ -83,14 +83,6 @@ Rails.application.routes.draw do
     resources :configs
   end
 
-  namespace :truck do
-    resources :brands
-    resources :series
-    resources :items
-    resources :pictures
-    resources :details
-    resources :configs
-  end
 
   match "api/v1/qx/runway" => "qx#runway", via: [:post] # runway
   match "api/v1/qx/weather" => "qx#weather", via: [:post] # weather

@@ -3,18 +3,18 @@ default: &default
   pool: 8
   timeout: 5000
   host: localhost
-  username: root
-  password: root
+  username: "root"
+  password: "root"
   encoding: utf8
 
 production:
   <<: *default
-  database: imerp
+  database: dc_dev
 
 development:
   <<: *default
-  database: imerp_dev
+  database: dc_dev
 
 test:
   <<: *default
-  database: imerp_test
+  database: dc_test

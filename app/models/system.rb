@@ -1,3 +1,5 @@
+# require "rest-client"
+
 class System
     # System.cache_id(key, default_value)
     def self.cache_id(key, default_value = 1)
@@ -64,8 +66,7 @@ class System
     def fd2(code = '00')
       (1..3850).each do |i|
         p code
-
-        system("mkdir /tmp/test/#{code}")
+        # system("mkdir /tmp/test/#{code}")
         code = gen_next(code)
       end
     end
@@ -75,15 +76,54 @@ class System
     def fd3(code = '000')
       (1..10000).each do |i|
         p code
-        system("mkdir /tmp/test/#{code}")
+        # system("mkdir /tmp/test/#{code}")
         code = gen_next2(code)
       end
     end
 
 
-    def pic_name(folder="00", num=6)
+    def gen_pic_name(num=6)
       ran_str = Random.urlsafe_base64[0...num]
-      "#{folder}/#{ran_str}.jpg"
+      "#{ran_str}.jpg"
+    end
+
+
+    # 下载
+    def download_image(url, file)
+      retry_count = 0
+      begin
+        # puts "start download #{url}"
+        f = open(file, 'wb')
+        begin
+          res = Net::HTTP.get(URI.parse(url))
+          f.write(res)
+          # puts ">>>> #{file}下载中 "
+          sleep 0
+        ensure
+          f.close()
+        end
+      rescue Timeout::Error
+        retry_count += 1
+        if retry_count <= 3
+          retry
+        end
+      rescue Errno::ECONNRESET
+        retry_count += 1
+        if retry_count <= 3
+          sleep(5)
+          retry
+        end
+      rescue => e
+        retry_count += 1
+        if retry_count <= 3
+          retry
+        end
+      end
+      if retry_count < 4
+        return true
+      else
+        return false
+      end
     end
   end
 end
