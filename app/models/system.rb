@@ -86,7 +86,6 @@ class System
       "#{folder}/#{ran_str}.jpg"
     end
   end
-  
 end
 
 # System.cached(key, value)

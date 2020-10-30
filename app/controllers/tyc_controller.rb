@@ -70,7 +70,7 @@ class TycController < ActionController::API
   #给调用爬取的公司信息
   #  api/company
   def company1
-    tyc_company = Cn::Company.unused.first(200).sample
+    tyc_company = Cn::Company.first(200).sample
 
     if tyc_company.present? && tyc_company.update(used:1)
       render :json =>  {
@@ -144,17 +144,17 @@ class TycController < ActionController::API
     }, :status => 200
   end
 
-  def need_verify 
+  def need_verify
     app = params[:app]
     time = params[:time]
     url = params[:url]
 
-    value = app + ","+time + ","+url 
-    key = "#{app}_need_verify" 
+    value = app + ","+time + ","+url
+    key = "#{app}_need_verify"
 
     # $redis.set(key, value)
     System.cached(key, value)
-    
+
     # key = "1551058718-search_cid"
     # $redis.get(key)
 
@@ -168,10 +168,10 @@ class TycController < ActionController::API
     }, :status => 200
   end
 
-  def check_verify_ok 
+  def check_verify_ok
     app = params[:app]
-    
-    key = "#{app}-ok" 
+
+    key = "#{app}-ok"
 
     # check_verify_ok = $redis.get(key) || 0
     check_verify_ok = System.cached(key) || 0
@@ -199,12 +199,12 @@ class TycController < ActionController::API
     }, :status => 200
   end
 
-  def cookie 
+  def cookie
     app = params[:app] rescue  0
     key = "#{app}-cookie"
-    
+
     # @tyc_cookie = $redis.get(key)
-    cookie = System.cached(key) 
+    cookie = System.cached(key)
     render :json =>  {
       err_no: 0,
       data: cookie,
@@ -216,7 +216,7 @@ class TycController < ActionController::API
   end
 
 
-  
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

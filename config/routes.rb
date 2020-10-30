@@ -175,21 +175,21 @@ Rails.application.routes.draw do
   #日期数据
   match "api/date_data" => "ocr#date_data", via: [:get]
   #存单
-  match "api/cundan" => "ocr/danju#cundan", via: [:get]
+  match "api/cundan" => "ocr#cundan", via: [:get]
   #二手车发票
-  match "api/ershoupiao" => "ocr/danju#ershoupiao", via: [:get]
+  match "api/ershoupiao" => "ocr#ershoupiao", via: [:get]
   #新车发票
-  match "api/xinchepiao" => "ocr/danju#xinchepiao", via: [:get]
+  match "api/xinchepiao" => "ocr#xinchepiao", via: [:get]
   #合格证
-  match "api/hegezheng" => "ocr/danju#hegezheng", via: [:get]
+  match "api/hegezheng" => "ocr#hegezheng", via: [:get]
   #进口凭证
-  match "api/jinkoupinzheng" => "ocr/danju#jinkoupinzheng", via: [:get]
+  match "api/jinkoupinzheng" => "ocr#jinkoupinzheng", via: [:get]
   #一致性证书
-  match "api/yizhixing" => "ocr/danju#yizhixing", via: [:get]
+  match "api/yizhixing" => "ocr#yizhixing", via: [:get]
   #增值税发票
-  match "api/zhengzhipiao" => "ocr/danju#zhengzhipiao", via: [:get]
+  match "api/zhengzhipiao" => "ocr#zhengzhipiao", via: [:get]
   #转账支票
-  match "api/zhipiao" => "ocr/danju#zhipiao", via: [:get]
+  match "api/zhipiao" => "ocr#zhipiao", via: [:get]
 
 
   root "home#index"

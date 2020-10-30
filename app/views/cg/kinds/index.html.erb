@@ -1,4 +1,35 @@
-<style type="text/css">
+<p id="notice"><%= notice %></p>
+
+<h1>Cg Kind</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Remark</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cg_kinds.each do |cg_kind| %>
+      <tr>
+        <td><%= cg_kind.name %></td>
+        <td><%= cg_kind.is_show %></td>
+        <td><%= link_to 'Show', cg_kind %></td>
+        <td><%= link_to 'Edit', edit_cg_kind_path(cg_kind) %></td>
+        <td><%= link_to 'Destroy', cg_kind, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cg Key', new_cg_kind_path %>
+
+
+<!-- <style type="text/css">
   body {margin:10px;}
 </style>
 
@@ -70,7 +101,7 @@
                       <a rel="nofollow" data-method="put" title="删除"  style="float:right;margin-left:10px;color:#b3b3b3">X</a>
                   </label>
               </div>
-            
+
           </div>
         </div>
         </form>
@@ -90,7 +121,7 @@
       console.info(name)
     }
 </script>
-<!-- $.ajax({
+$.ajax({
   type: 'POST',
   url: "create",
   data: {name: name, data: context},

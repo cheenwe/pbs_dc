@@ -34,17 +34,17 @@ class Faker
     USE_NATURE = %w(营运 公路客运 公交客运 出租客运 旅游客运 租赁 教练 货运 危化品运输 非营运 警用 消防 救护 工程救险 营转非 出租转非)
     CAR_MODEL = %w(奥迪 宝马 奔驰 保时捷 宝沃 大众 捷达 卡尔曼 smart 西雅特  本田 丰田 雷克萨斯 铃木 马自达 讴歌 日产 斯巴鲁 三菱 五十铃 英菲尼迪 起亚 双龙 现代 别克 道奇 福特 Faraday Future GMC Jeep 凯迪拉克 克莱斯勒 林肯 特斯拉 雪佛兰 欧系其他 标致 DS 雷诺 雪铁龙 阿斯顿·马丁 宾利 捷豹 路虎 劳斯莱斯 路特斯 MINI 迈凯伦 阿尔法·罗密欧 布加迪 菲亚特 法拉利 兰博基尼 玛莎拉蒂 依维柯 国能汽车 Polestar 沃尔沃 斯柯达  爱驰 ARCFOX 宝骏 比亚迪 奔腾 比速 北汽绅宝 北汽幻速 北汽威旺 北汽昌河 北汽制造 北汽道达 北汽新能源 北京 拜腾 长安汽车 长安欧尚 长安轻型车 长安跨越 长城 大乘汽车 东风风度 东风风光 东风风神 东风风行 东风富康 东风小康 东风 东风·瑞泰特 东南 电咖 福迪 福汽启腾 福田 广汽传祺 广汽新能源 观致 国金 哈弗 海马 汉腾 红旗 华泰 红星汽车 黄海 华骐 华颂 吉利 江淮 捷途 江铃 奇点汽车 金杯 金龙 九龙 君马 钧天汽车 凯翼 开瑞 卡升 卡威 领克 陆风 力帆 猎豹 零跑汽车 领途汽车 理念 理想智造 名爵 哪吒汽车 纳智捷 欧尚汽车 欧拉 奇瑞 启辰 前途 庆铃 全球鹰 荣威 SWM斯威 思皓 上汽大通 腾势 天际汽车 五菱 WEY 蔚来 潍柴英致 威马汽车 小鹏汽车 星驰 星途 新特汽车 驭胜 野马 一汽 裕路 云度 云雀汽车 众泰 中华 知豆 之诺 中兴)
     FAPIAO_LEIBIE = %w(*石油制品*   货物 劳务 服务 无形资产 不动产 未发生销售行为的不征税项目  农业类产品 林业类产品 牧业类产品 渔业类产品 矿产品 食品类产品 饮料类产品 烟类产品 酒类产品 纺织类产品 服装类产品 皮革类产品 木制品 家具类产品 纸类产品 印刷品 软件 文教 工艺品类产品 石油 化工 医药产品 金属及非金属制品 机械 设备类产品 电力 热力 水类产品 燃气类产品 加工劳务 修理修配劳务 油气田企业为生产原油 天然气提供的生产性劳务 矿产资源开采 挖掘 切割 破碎 分拣 洗选等劳务 交通运输服务费 邮政服务费 电信服务费 现代服务费 建筑服务费 金融服务费 生活服务费 技术服务费 商标 著作权 商誉 自然资源使用权 其他权益性无形资产 建筑物 构筑物 其他不动产 预付卡销售和充值 销售自行开发的房地产项目预收款 已申报缴纳营业税未开票补开票)
-    # 
+    #
     # PLATE_CHARS_PROVINCE = {"京", "沪", "津", "渝", "冀", "晋", "蒙", "辽", "吉", "黑",
     # "苏", "浙", "皖", "闽", "赣", "鲁", "豫", "鄂", "湘", "粤",
     # "桂", "琼", "川", "贵", "云", "藏", "陕", "甘", "青", "宁",
     # "新"}
     PLATE_CHARS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N","P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    
-    
 
-    class << self 
-      
+
+
+    class << self
+
 
       def char_num(num=5)
         Faker::PLATE_CHARS.sample(num).join("")
@@ -68,15 +68,15 @@ class Faker
         CAR_MODEL.sample+ "/"+PLATE_CHARS.sample(8).join("")
       end
 
-      
- 
+
+
 
       # 民族
       def minzhu
         # %w()
         MINZU.sample
       end
- 
+
       #营业执照经营范围
       def gen_scope
         return  OPERATE_SCOPE.sample
@@ -141,7 +141,7 @@ class Faker
 
       #真实地址
       def real_address
-        code = Rails.cache.read("all-codes").sample
+        code = Rails.cache.read("all_codes").sample
         village = Core::Village.get_shourt_full_name(code)[2].strip
         return  "#{village}"
       end
@@ -220,7 +220,7 @@ class Faker
         scale = standard_deviation * rho
         mean + scale * Math.cos(theta)
       end
- 
+
       def within(range = 1.00..5000.00)
         between(range.min, range.max)
       end
@@ -252,8 +252,8 @@ class Faker
       def digit
         rand(10).to_s
       end
-      
-      #  千位分隔符 
+
+      #  千位分隔符
       def part_number(number)
         p number
         left, right = number.to_s.split(".")
@@ -332,25 +332,25 @@ class Faker
         return data
       end
 
-      #日期补全, 1位数字前加 0 
+      #日期补全, 1位数字前加 0
       def month_num_fix(num)
         if num.size == 1
           return '零'+num
         else
-          num 
-        end  
+          num
+        end
       end
 
-      #日期补全, 十位数位数字前加 0 
+      #日期补全, 十位数位数字前加 0
       def cn_date_day_fix(num)
         if num.size == 1
           return '零'+num
         elsif num =="壹拾" || num =="贰拾" ||  num =="叁拾"
           return '零'+num
         else
-          num 
+          num
 
-        end  
+        end
       end
 
       # ============================================

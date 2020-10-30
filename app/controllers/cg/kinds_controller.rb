@@ -4,6 +4,14 @@ class Cg::KindsController < ApplicationController
   # GET /cg/kinds
   # GET /cg/kinds.json
   def index
+
+    per_page = params[:per_page] || 100
+    @q = Cg::Kind.ransack(params[:q])
+    @data = @q.result()
+    @cg_kinds = @data.paginate(:page => params[:page], :per_page => per_page)
+
+
+
     @cg_not_kinds = Cg::Kind.where(is_show:false)
     @cg_select_kinds = Cg::Kind.where(is_show:true)
     @cg_nil_kinds = Cg::Kind.where(is_show:nil)
