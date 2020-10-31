@@ -1,0 +1,53 @@
+<%% if params[:id] && params[:action] != "clone" %>
+<form action="/<%= controller_file_path %>/<%%= params[:id]%>" accept-charset="UTF-8" method="post" id="v-form" data-parsley-validate="">
+  <input name='_method' type='hidden' value='put'>
+  <input name='<%= singular_table_name %>[id]' type='hidden' value='<%%= params[:id]%>'>
+  <%% else %>
+<form action="/<%= controller_file_path %>/" accept-charset="UTF-8" method="post" id="v-form" data-parsley-validate="">
+  <%% end %>
+    <div class="card-body">
+      <%%= form_token %>
+      <!-- <%= attributes.map { |e| e.column_name  } %> -->
+      <% attributes.each do |attribute| %>
+      <fieldset>
+        <div class="form-group row">
+          <%% <%= attribute.column_name %> = @<%= singular_table_name %>.<%= attribute.column_name %> rescue ''%>
+          <%%= input_text_tag(t("<%= singular_table_name %>.<%= attribute.column_name %>"), "<%= singular_table_name %>[<%= attribute.column_name %>]", "#{<%= attribute.column_name %>}", true ) %>
+        </div>
+      </fieldset>
+      <% end %>
+      <!--
+        <%= class_name %>
+        <%% id = @<%= singular_table_name %>.kind rescue ''%>
+        <%% name = @<%= singular_table_name %>.kind rescue ''%>
+        <%%#= input_select_single_tag(t("<%= singular_table_name %>.kind") :"<%= singular_table_name %>.kind", "<%= singular_table_name %>[kind]", Permission.kinds.keys,   [id, name, true ] )%>
+        - date
+        input_date_tag
+        - textarea
+        input_textarea_tag
+      -->
+    </div>
+    <%% btn_str = params[:id].present?? t("update"):t("create") %>
+
+    <div class="card-footer text-center">
+      <div class="d-flex">
+        <div id="result"></div>
+        <a href="/<%= controller_file_path %>"   class="btn  btn-lg  btn-secondary"><i class="fa fa-arrow-left"></i><span ><%%= t :"btn.back" %></span></a>
+        <div class="btn-group ml-auto ">
+          <button type="submit" class="btn btn-lg btn-primary auto-show-submit-dropdown" data-disable-with="<%%= t :"btn.submiting" %>">
+            <i class="fa fa-1x fa-check"></i>
+            <%%= t :"btn.submit" %><%%= btn_str %>
+          </button>
+        </div>
+      </div>
+    </div>
+</form>
+<script>
+  $('form').parsley({triggerAfterFailure: 'focusout changed.bs.select'}).on('field:validated', function() {
+      var ok = $('.parsley-error').length === 0;
+      // do something with ok
+    }).on('form:submit', function() {
+      // return false; // Don't submit form for this demo
+    }
+  );
+</script>

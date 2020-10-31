@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  concern :baseable do
+    collection do
+      get 'bulks' => :bulks, as: :bulks_html
+      post 'bulks' => :bulks, as: :bulks
+    end
+  end
+
+  namespace :mm do
+    resources :users, concerns: [:baseable]
+  end
   namespace :che300 do
     resources :infos
   end

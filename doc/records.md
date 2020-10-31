@@ -9,3 +9,18 @@ rails d scaffold jz/record
 
 rails g scaffold jz/sx user_id:integer name:string start_at:datetime end_at:datetime
 rails db:migrate 
+
+
+
+
+
+
+## 淘宝MM 
+
+rails d scaffold mm/user 
+rails g scaffold mm/user name:string 
+
+rails g scaffold  mm/photos album_id:integer name:string url:string kind:integer 
+
+rails g scaffold  mm/albums user_id:integer name:string total:float kind:integer 
+

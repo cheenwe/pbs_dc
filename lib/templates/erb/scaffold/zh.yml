@@ -1,0 +1,15 @@
+zh-CN:
+  <%= singular_table_name %>:
+    formname: "填写模块名称"
+    modelname: "填写模块名称管理"
+    <% attributes.each do |attribute| %>
+    <%= attribute.column_name %>: "<%= attribute.column_name %>t"
+    <% end %>
+
+    created_at: 创建于
+    updated_at: 更新于
+
+
+    <% attributes.each do |attribute| %>
+    <%= attribute.column_name %>_placeholder: "选择/填写 <%= attribute.column_name %>t"
+    <% end %>

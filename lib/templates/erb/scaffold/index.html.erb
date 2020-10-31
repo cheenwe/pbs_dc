@@ -1,0 +1,118 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/"  ><%%=  t :"dashboard" %></a></li>
+    <%% if params[:id] %>
+    <li class="breadcrumb-item"><a href="/<%= controller_file_path %>"  ><%%=  t :"<%= singular_table_name %>" %></a></li>
+    <li class="breadcrumb-item active">
+        <%%= @<%= singular_table_name %>.id %>
+    </li>
+    <%% else %>
+    <li class="breadcrumb-item"><a href="/<%= controller_file_path %>"  ><%%=  t :"<%= singular_table_name %>" %></a></li>
+    <%% end %>
+    <div class="ml-auto">
+        <a href="javascript:void(0);" onclick="goBack()" class="mb-0 btn btn-xs  btn-outline-purple"><i class="fa fa-arrow-left"><%%=  t :"back" %></i></a>
+        <a href="javascript:void(0);" onclick="goForward()" class="mb-0 btn btn-xs  btn-outline-purple"><i class="fa fa-arrow-right"><%%=  t :"forward" %></i></a>
+        <a href="javascript:void(0);" onclick="reloadPage()" class="btn btn-xs btn-outline-pink"><i class="icon-refresh"><%%=  t :"refresh" %></i></a>
+    </div>
+</ol>
+
+<div class="col-xs-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"><%%= t "<%= singular_table_name %>"  %></h3>
+        </div>
+        <div class="page">
+        <div class="col-xs-12">
+            <br>
+            <div class="d-flex">
+                <form class="search" action="/<%= controller_file_path %>" accept-charset="UTF-8" method="get" novalidate="">
+                    <div class="input-group">
+                        <input placeholder="<%%= t('name_or_code') %>" class="form-control" name="q[name_or_code_cont]" id="q_name_cont">
+                        <input type="date" placeholder="<%%= t('created_at_gteq') %>" id="ct1" class="form-control datepicker hidden-xs" name="q[created_at_gteq]" autocomplete="off" id="created_at_gteq">
+                        <input type="date"  placeholder="<%%= t('created_at_lteq') %>" id="ct2" class="form-control datepicker hidden-xs" name="q[created_at_lteq]" autocomplete="off"  id="created_at_lteq">
+                        <div class="input-group-append"><button class="btn btn-secondary text-primary text-bold"  data-disable-with="<%%= t :doing %>" type="submit"><i class="fa fa-search"><%%= t :search %></i></button></div>
+                        <div class="input-group-append">
+                            <%%= link_to "#{t('reset')}", "/<%= controller_file_path %>/select" , class:"btn btn-secondary text-gray", 'data-disable-with' =>"#{t('doing')}"%>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="pull-right  ml-auto">
+                  <a  href="/<%= controller_file_path %>/new"    >
+                      <button type="submit" class="btn btn-primary ml-auto">
+                      <%%= t :"new" %>
+                      </button>
+                  </a>
+                  <a class="btn btn-primary ml-auto" href="javascript:void(0)" onclick="$('#bulk_action').val('destroy');jQuery('#bulk_form').submit(); return false;"><%%= t :"bulk_delete" %></a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-xs-12">
+            <!-- 批量操作 form -->
+            <form accept-charset="UTF-8" action="/<%= controller_file_path %>/bulks" class="form" id="bulk_form" method="post">
+                <input name="utf8" type="hidden" value="✓" />
+                <input name="back_url" type="hidden" value="<%%= request.fullpath %>" />
+                <%%= form_token %>
+                <input id="bulk_action" name="bulk_action" type="hidden" />
+                <div id="table_x">
+                    <% column_names = attributes.map { |e| e.column_name  } %>
+                    <%# column_names = column_names.delete_at(column_names.index('user_id')) %>
+                    <%# column_names = column_names.delete_at(column_names.index('code')) %>
+                    <!-- <%= column_names %> -->
+                    <table class="table table-bordered table-hover v-table">
+                        <thead>
+                            <tr>
+                              <th width="10" class="t-number hidden-xs">
+                                <label class="custom-control custom-checkbox custom-control-inline">
+                                  <input type="checkbox"  class="custom-control-input"  value="all" id="selected_all" onclick="select_all()">
+                                  <span class="custom-control-label"> </span>
+                                </label>
+                              </th>
+                                <% column_names.each do |column_name| %>
+                                <th><%%= t :"<%= singular_table_name %>.<%= column_name %>" %></th><% end %>
+                                <th class="list-date"><%%= sort_column(@q, 'created_at', '<%= singular_table_name %>') %></th>
+                                <th class="list-operate">-</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%% @<%= plural_table_name %>.each_with_index do |item, index|  %>
+                            <tr>
+                                <td class="hidden-xs text-muted">
+                                  <label class="formcheck custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input" id="chk-<%%=index%>" name="bulk_ids[]" value="<%%= item.id %>">
+                                    <span class="custom-control-label" for="chk-<%%=index%>"><%%= index+1 %> </span>
+                                  </label>
+                                </td>
+                                <% column_names.each do |column_name| %>
+                                <td> <% if column_name.include?("_id") %><%%=  <%= column_name.split("_")[0].classify %>.get_name(item.<%= column_name %>) rescue ''%><% else %><%%= item.<%= column_name %> %><% end %></td><% end %>
+                                <td><%%= bst item.created_at %></td>
+                                <td class="text-center">
+                                    <div class="btn-list">
+                                        <a href="/<%= controller_file_path %>/<%%= item.id %>"  >
+                                            <button title="<%%= t :show %>" type="button" class="btn btn-xs btn-square btn-default"><%%= t :show %></button>
+                                        </a>
+                                        <a href="/<%= controller_file_path %>/<%%= item.id %>/edit"  >
+                                            <button title="<%%= t :edit %>" type="button" class="btn btn-xs btn-square btn-warning"><%%= t :edit %></button>
+                                        </a>
+                                        <a data-confirm="确认删除?" rel="nofollow" data-method="delete" href="/<%= controller_file_path %>/<%%= item.id %>"  >
+                                            <button title="<%%= t :delete %>" type="button" class="btn btn-square btn-labeled btn-danger btn-xs"><%%= t :delete %>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <%% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex">
+            <ul class="pagination">
+                <%%= will_paginate @mm_users %>
+            </ul>
+        </div>
+        </div>
+    </div>
+</div>
+

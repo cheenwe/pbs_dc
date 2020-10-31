@@ -16,3 +16,31 @@
 
 //= require turbolinks
 //= require_tree .
+
+
+//  刷新当前页面
+function reloadPage() {
+    window.location.reload()
+}
+
+//  后退
+function goBack() {
+  window.history.back()
+}
+
+//  前进
+function goForward() {
+  window.history.forward()
+}
+
+function select_all() {
+  elems = $(".formcheck [name='bulk_ids[]']");
+  // console.log(elems)
+  // console.log(elems)
+  // console.log(elems)
+  if ($('#selected_all').is(':checked')) {
+    $(elems).prop('checked', true);
+  } else {
+    $(elems).prop('checked', false);
+  }
+}

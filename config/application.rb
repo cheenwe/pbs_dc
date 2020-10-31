@@ -18,5 +18,18 @@ module Ran
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+
+    config.generators do |g|
+      g.orm             :active_record
+      g.template_engine :erb
+    end
+
   end
+end
+
+
+Rails.application.config.generators do |g|
+  g.template_engine :all
+  g.fallbacks[:all] = :erb # or haml/slim etc
 end

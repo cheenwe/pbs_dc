@@ -1,0 +1,14 @@
+en:
+  <%= singular_table_name %>:
+    formname: "<%= singular_table_name %>"
+    modelname: "<%= singular_table_name %>"
+    <% attributes.each do |attribute| %>
+    <%= attribute.column_name %>: "<%= attribute.column_name.delete("_id").titleize %>"
+    <% end %>
+    created_at: Created At
+    updated_at: Update At
+
+
+    <% attributes.each do |attribute| %>
+    <%= attribute.column_name %>_placeholder: "Fill in <%= attribute.column_name.delete("_id").titleize %>"
+    <% end %>
