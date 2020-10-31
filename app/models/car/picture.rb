@@ -7,9 +7,9 @@ class Car::Picture < ApplicationRecord
     download_path = "/disk4/data/cars/"
     batch_size = 5000
     folder = "00"
-    Car::Picture.where("id >?", 54637).find_in_batches(batch_size: batch_size).each do |list|
+    Car::Picture.where("id >?", 1140427).find_in_batches(batch_size: batch_size).each do |list|
       current_folder = download_path+folder
-      system("mkdir -p #{current_folder}") 
+      system("mkdir -p #{current_folder}")
 
       list.each do |item|
         p item.id
