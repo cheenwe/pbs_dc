@@ -1,3 +1,4 @@
+require "chinese_pinyin"
 class OcrController < ActionController::API
 
   ALL_CODE = Core::Village.new.read_or_write_all_code #Rails.cache.read("all-codes").present??  Rails.cache.read("all-codes"):Core::Village.new.write_cache
@@ -81,7 +82,8 @@ class OcrController < ActionController::API
       xingming = Faker.name
 
       render :json =>  {
-        data: "#{xingming}",
+        data: xingming,
+        pinyin: Pinyin.t(xingming),
         err_no: 0,
         msg: "success"
       }, :status => 200

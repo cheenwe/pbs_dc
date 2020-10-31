@@ -7,13 +7,18 @@ Rails.application.routes.draw do
     end
   end
 
+  # 淘宝MM数据
   namespace :mm do
     resources :users, concerns: [:baseable]
+    resources :albums, concerns: [:baseable]
+    resources :photos, concerns: [:baseable]
   end
+
   namespace :che300 do
     resources :infos
   end
 
+  # 中国公司工商信息
   namespace :cn do
     resources :companies
   end
@@ -99,11 +104,11 @@ Rails.application.routes.draw do
   match "api/v1/qx/take_off" => "qx#take_off", via: [:post] # take_off
   match "api/v1/qx/landing" => "qx#landing", via: [:post] # landing
   match "api/v1/qx/message" => "qx#message", via: [:post] # message
-  match "qx" => "qx#qx", via: [:get] # weather
-  match "tuhu" => "tuhu/brands#tuhu", via: [:get, :post]
-  match "cg" => "home#cg", via: [:get, :post]
-
-
+  match "tuhu" => "tuhu/brands#tuhu", via: [:get]
+  match "cg" => "home#cg", via: [:get]
+  match "mm" => "home#mm", via: [:get]
+  match "api" => "home#api", via: [:get]
+  match "qx" => "home#qx", via: [:get]
 
   # ====== for python
   match "api/v1/monitor" => "api#monitor", via: [:post] #监测服务器数据

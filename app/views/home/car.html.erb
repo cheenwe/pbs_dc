@@ -1,9 +1,29 @@
-<h2>汽车数据</h2>
 
 
-<h3><a href="/car/brands" target="_blank" > brands </a> </h3>
-<h3><a href="/car/items" target="_blank" > items </a> </h3>
-<h3><a href="/car/series" target="_blank" > series </a> </h3>
-<h3><a href="/car/pictures" target="_blank" > pictures </a> </h3>
-<h3><a href="/car/details" target="_blank" > details </a> </h3>
-<h3><a href="/car/configs" target="_blank" > configs </a> </h3>
+<div class="page-header">
+  <h1 class="page-title">
+  <h2>汽车数据</h2>
+  </h1>
+</div>
+<div class="row row-cards">
+  <% urls = %w(/car/brands /car/items /car/series /car/pictures /car/details /car/configs);i=0 %>
+  <% infos = %w(/car/brands /car/items /car/series /car/pictures /car/details /car/configs) %>
+
+  <% urls.each do |url|%>
+  <% name = url.split('/').last ||url %>
+  <div class="col-sm-6 col-lg-3">
+    <div class="card p-3">
+      <div class="d-flex align-items-center">
+        <span class="stamp stamp-md bg-<%= colors.sample %> mr-3">
+          <i class="fe fe-dollar-sign"></i>
+        </span>
+        <div>
+          <h4 class="m-0"><a href="<%= url %>" target="_blank" ><%= t name %> <small></small></a></h4>
+          <small class="text-muted"><%= infos[i] %></small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% i= i+1  %>
+  <% end %>
+</div>

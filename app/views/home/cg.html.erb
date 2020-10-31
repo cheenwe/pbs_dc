@@ -1,6 +1,27 @@
-<h2>采购公告</h2>
+<div class="page-header">
+  <h1 class="page-title">
+  <h2>采购公告</h2>
+  </h1>
+</div>
+<div class="row row-cards">
+  <% urls = %w(/cg/kinds /cg/keys /cg/gonggaos);i=0 %>
+  <% infos = %w(/cg/kinds /cg/keys /cg/gonggaos) %>
 
-
-<h3><a href="/cg/kinds" target="_blank" > kinds </a> </h3>
-<h3><a href="/cg/keys" target="_blank" > keys </a> </h3>
-<h3><a href="/cg/gonggaos" target="_blank" > gonggaos </a> </h3>
+  <% urls.each do |url|%>
+  <% name = url.split('/').last ||url %>
+  <div class="col-sm-6 col-lg-3">
+    <div class="card p-3">
+      <div class="d-flex align-items-center">
+        <span class="stamp stamp-md bg-<%= colors.sample %> mr-3">
+          <i class="fe fe-dollar-sign"></i>
+        </span>
+        <div>
+          <h4 class="m-0"><a href="<%= url %>" target="_blank" ><%= t name %> <small></small></a></h4>
+          <small class="text-muted"><%= infos[i] %></small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% i= i+1  %>
+  <% end %>
+</div>

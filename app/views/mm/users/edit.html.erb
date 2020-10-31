@@ -1,0 +1,29 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/"  ><%=  t :"dashboard" %></a></li>
+  <!-- <li class="breadcrumb-item"><a href="#">Role</a></li> -->
+  <% if params[:id] %>
+  <li class="breadcrumb-item"><a href="/mm/users"  ><%=  t :"mm_user" %></a></li>
+  <li class="breadcrumb-item active">
+      <%= @mm_user.id %>
+  </li>
+  <% else %>
+  <li class="breadcrumb-item"><a href="/mm/users"  ><%=  t :"mm_user" %></a></li>
+  <% end %>
+  <div class="ml-auto">
+    <a href="javascript:void(0);" onclick="goBack()" class="mb-0 btn btn-xs  btn-outline-purple"><i class="fa fa-arrow-left"><%=  t :"back" %></i></a>
+    <a href="javascript:void(0);" onclick="goForward()" class="mb-0 btn btn-xs  btn-outline-purple"><i class="fa fa-arrow-right"><%=  t :"forward" %></i></a>
+    <a href="javascript:void(0);" onclick="reloadPage()" class="btn btn-xs btn-outline-pink"><i class="icon-refresh"><%=  t :"refresh" %></i></a>
+  </div>
+</ol>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><%=  t :"edit" %><%=  t :"mm_user.formname" %></h3>
+      </div>
+      <div class="divider"></div>
+      <%= render 'form', mm_user: @mm_user %>
+    </div>
+  </div>
+</div>

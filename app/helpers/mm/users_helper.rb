@@ -1,0 +1,2 @@
+module Mm::UsersHelper
+end

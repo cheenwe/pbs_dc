@@ -1,12 +1,13 @@
 
+
 <div class="page-header">
   <h1 class="page-title">
-  <h2>主页</h2>
+  <h2>气象数据</h2>
   </h1>
 </div>
 <div class="row row-cards">
-  <% urls = %w(/qx/ /tuhu /cn/companies /tyc /car /cg /mm);i=0 %>
-  <% infos = %w(1.气象 2.途虎数据 3.公司信息 4.天眼查公司 5.汽车数据 6.采购公告 7.淘宝MM) %>
+  <% urls = %w(/qx/airports /qx/runways /qx/weathers /qx/take_offs /qx/landings /qx/messages /qx/infos);i=0 %>
+  <% infos = %w(机场/airport 跑道/runway 气象数据/weather 机场起飞数据/take_off 机场着陆数据/landing 报文信息/message 流量信息/infos) %>
 
   <% urls.each do |url|%>
   <% name = url.split('/').last ||url %>

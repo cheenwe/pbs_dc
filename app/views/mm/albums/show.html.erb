@@ -1,0 +1,82 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/"  ><%=  t :"dashboard" %></a></li>
+  <!-- <li class="breadcrumb-item"><a href="#">Role</a></li> -->
+  <% if params[:id] %>
+  <li class="breadcrumb-item"><a href="/mm/albums"  ><%=  t :"mm_album" %></a></li>
+  <li class="breadcrumb-item active">
+      <%= @mm_album.id %>
+  </li>
+  <% else %>
+  <li class="breadcrumb-item"><a href="/mm/albums"  ><%=  t :"mm_album" %></a></li>
+  <% end %>
+  <div class="ml-auto">
+    <a href="javascript:void(0);" onclick="goBack()" class="mb-0 btn btn-xs  btn-outline-purple"><i class="fa fa-arrow-left"><%=  t :"back" %></i></a>
+    <a href="javascript:void(0);" onclick="goForward()" class="mb-0 btn btn-xs  btn-outline-purple"><i class="fa fa-arrow-right"><%=  t :"forward" %></i></a>
+    <a href="javascript:void(0);" onclick="reloadPage()" class="btn btn-xs btn-outline-pink"><i class="icon-refresh"><%=  t :"refresh" %></i></a>
+  </div>
+</ol>
+
+<div class="col-xs-12">
+  <div class="card">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a href="/mm/albums/<%= @mm_album.id %>" class="nav-link <%= !params[:tab]? 'active':'' %>" ><%=  t :"detail" %></a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="detail" role="tabpanel"  class="tab-pane <%= !params[:tab]? 'active':'' %>">
+        <div class="table-responsive">
+          <table class="table table-striped  table-hover v-table show">
+            <tbody>
+              <!-- ["user_id", "name", "total", "kind"] -->
+              
+              <tr>
+                <th colspan='1'>  <%= t :"mm_album.user_id" %></th>
+                <td colspan='3'>  <%= @mm_album.user_id rescue ''%> </td>
+              </tr>
+              
+              <tr>
+                <th colspan='1'>  <%= t :"mm_album.name" %></th>
+                <td colspan='3'>  <%= @mm_album.name rescue ''%> </td>
+              </tr>
+              
+              <tr>
+                <th colspan='1'>  <%= t :"mm_album.total" %></th>
+                <td colspan='3'>  <%= @mm_album.total rescue ''%> </td>
+              </tr>
+              
+              <tr>
+                <th colspan='1'>  <%= t :"mm_album.kind" %></th>
+                <td colspan='3'>  <%= @mm_album.kind rescue ''%> </td>
+              </tr>
+              
+              <tr>
+                <th><%= t :"mm_album.created_at" %></th>
+                <td><%= bt @mm_album.created_at rescue '' %> </td>
+                <th><%= t :"mm_album.updated_at" %></th>
+                <td><%= bt @mm_album.updated_at rescue '' %></td>
+              </tr>
+            </tbody>
+          </table>
+          <hr>
+          <div class="row col-12">
+            <a class="btn  btn-md  btn-secondary" href="/mm/albums"   >
+              <i class="fa-1x icon-arrow-left">
+            <%= t :"back" %></i></a>
+          </a>
+          <div class="ml-auto">
+              <a data-confirm="<%= t :delete_confirm %>" rel="nofollow" data-method="delete" href="/mm/albums/<%= @mm_album.id %>"  >
+                <button title="<%= t :delete %>" type="button" class="btn btn-md  btn-outline-danger">
+                  <i class="fa-1x fa fa-times "><%=  t :"delete" %></i>
+                </button>
+              </a>
+              <a class="btn  btn-md  btn-outline-warning " href="/mm/albums/<%= @mm_album.id %>/edit"   >
+                <i class="fa-1x icon-note"><%= t :"edit" %></i>
+              </a>
+          </div>
+        </div>
+
+        <br>
+    </div>
+  </div>
+</div>

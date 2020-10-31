@@ -1,0 +1,67 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/"  ><%=  t :"dashboard" %></a></li>
+  <!-- <li class="breadcrumb-item"><a href="#">Role</a></li> -->
+  <% if params[:id] %>
+  <li class="breadcrumb-item"><a href="/mm/users"  ><%=  t :"mm_user" %></a></li>
+  <li class="breadcrumb-item active">
+      <%= @mm_user.id %>
+  </li>
+  <% else %>
+  <li class="breadcrumb-item"><a href="/mm/users"  ><%=  t :"mm_user" %></a></li>
+  <% end %>
+  <div class="ml-auto">
+    <a href="javascript:void(0);" onclick="goBack()" class="mb-0 btn btn-xs  btn-outline-purple"><i class="fa fa-arrow-left"><%=  t :"back" %></i></a>
+    <a href="javascript:void(0);" onclick="goForward()" class="mb-0 btn btn-xs  btn-outline-purple"><i class="fa fa-arrow-right"><%=  t :"forward" %></i></a>
+    <a href="javascript:void(0);" onclick="reloadPage()" class="btn btn-xs btn-outline-pink"><i class="icon-refresh"><%=  t :"refresh" %></i></a>
+  </div>
+</ol>
+
+<div class="col-xs-12">
+  <div class="card">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a href="/mm/users/<%= @mm_user.id %>" class="nav-link <%= !params[:tab]? 'active':'' %>" ><%=  t :"detail" %></a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="detail" role="tabpanel"  class="tab-pane <%= !params[:tab]? 'active':'' %>">
+        <div class="table-responsive">
+          <table class="table table-striped  table-hover v-table show">
+            <tbody>
+              <!-- ["name"] -->
+              
+              <tr>
+                <th colspan='1'>  <%= t :"mm_user.name" %></th>
+                <td colspan='3'>  <%= @mm_user.name rescue ''%> </td>
+              </tr>
+              
+              <tr>
+                <th><%= t :"mm_user.created_at" %></th>
+                <td><%= bt @mm_user.created_at rescue '' %> </td>
+                <th><%= t :"mm_user.updated_at" %></th>
+                <td><%= bt @mm_user.updated_at rescue '' %></td>
+              </tr>
+            </tbody>
+          </table>
+          <hr>
+          <div class="row col-12">
+            <a class="btn  btn-md  btn-secondary" href="/mm/users"   >
+              <i class="fa-1x icon-arrow-left">
+            <%= t :"back" %></i></a>
+          </a>
+          <div class="ml-auto">
+              <a data-confirm="<%= t :delete_confirm %>" rel="nofollow" data-method="delete" href="/mm/users/<%= @mm_user.id %>"  >
+                <button title="<%= t :delete %>" type="button" class="btn btn-md  btn-outline-danger">
+                  <i class="fa-1x fa fa-times "><%=  t :"delete" %></i>
+                </button>
+              </a>
+              <a class="btn  btn-md  btn-outline-warning " href="/mm/users/<%= @mm_user.id %>/edit"   >
+                <i class="fa-1x icon-note"><%= t :"edit" %></i>
+              </a>
+          </div>
+        </div>
+
+        <br>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,9 @@
 module ApplicationHelper
 
 
+  def colors
+    %w( blue-light blue blue-dark azure-light azure azure-dark indigo-light indigo indigo-dark purple-light purple purple-dark pink-light pink pink-dark red-light red red-dark orange-light orange orange-dark yellow-light yellow yellow-dark lime-light lime lime-dark green-light green green-dark teal-light teal teal-dark cyan-light cyan cyan-dark gray-light gray gray-dark gray-dark-light gray-dark gray-dark-dark white-light white white-dark)
+  end
 
   def form_token
     s =  "<input type='hidden' name='authenticity_token' value='#{form_authenticity_token}'>"
@@ -9,9 +12,7 @@ module ApplicationHelper
   end
 
   def input_text_tag(label, name, value='', required = false)
-
       # tran_placeholder = t("hr_job.code") placeholder='#{tran_placeholder}'
-
       s = "    <label class='col-md-2 col-form-label mb-2'>"
       s << "        #{label} "
         if required == true

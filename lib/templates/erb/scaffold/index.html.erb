@@ -85,7 +85,7 @@
                                 </td>
                                 <% column_names.each do |column_name| %>
                                 <td> <% if column_name.include?("_id") %><%%=  <%= column_name.split("_")[0].classify %>.get_name(item.<%= column_name %>) rescue ''%><% else %><%%= item.<%= column_name %> %><% end %></td><% end %>
-                                <td><%%= bst item.created_at %></td>
+                                <td><%%= bst item.created_at rescue '' %></td>
                                 <td class="text-center">
                                     <div class="btn-list">
                                         <a href="/<%= controller_file_path %>/<%%= item.id %>"  >
@@ -109,7 +109,7 @@
         </div>
         <div class="d-flex">
             <ul class="pagination">
-                <%%= will_paginate @mm_users %>
+                <%%= will_paginate @<%= plural_table_name %> %>
             </ul>
         </div>
         </div>
