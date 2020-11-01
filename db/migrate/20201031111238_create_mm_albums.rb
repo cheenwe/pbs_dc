@@ -5,6 +5,7 @@ class CreateMmAlbums < ActiveRecord::Migration[5.2]
       t.string :name
       t.float :total
       t.integer :kind
+      t.datetime :created_at
     end
   end
 end

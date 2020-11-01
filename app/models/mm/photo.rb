@@ -1,15 +1,54 @@
 class Mm::Photo < ApplicationRecord
+	def self.total_entries
+		4005346
+	end
 
 
+  # default_scope { order('album_id DESC') }
 
-  default_scope { order('album_id DESC') }
+
+  # Mm::Photo.fix_id_with_album
+  def self.fix_id_with_album
+    i = 0
+    folder = "0"
+    batch_size = 20
+
+    download_path = "/disk4/data/mm/"
+    # 循环相册
+    Mm::Album.find_in_batches(batch_size: batch_size).each do |albums|
+      current_folder = download_path+folder
+      # system("mkdir -p #{current_folder}")
+
+      albums.each do |album|
+        p "======album====#{album.id}"
+        # p album.id
+        photos = album.photos
+        photos.each do |item|
+          # p item.id
+          p i
+          url = item.url
+          name = System.gen_pic_name
+          pic_name = current_folder+"/"+name
+          pic_info = folder +"/"+name
+          # p pic_name
+          # item.update_columns(id:j_id, name: pic_info)
+          # DownloadJob.perform_later(url, pic_name)
+          #sleep((SecureRandom.rand))
+          i = i + 1
+          #sleep((SecureRandom.rand))
+        end
+      end
+      folder = System.next_str(folder)
+    end
+  end
 
   # Mm::Photo.download_all_pic
   def self.download_all_pic
     download_path = "/disk4/data/mm/"
+    # download_path = "/tmp/mm/"
     batch_size = 5000
     folder = "00"
-    j = 1
+    j_id = 1
     Mm::Photo.find_in_batches(batch_size: batch_size).each do |list|
       current_folder = download_path+folder
       system("mkdir -p #{current_folder}")
@@ -22,10 +61,11 @@ class Mm::Photo < ApplicationRecord
         pic_info = folder +"/"+name
         # p pic_name
         # p url
-        item.update_columns(id:j_id, name: pic_info)
+        # item.update_columns( name: pic_info)
+        PhotoUpdateJob.perform_later(item, pic_info)
         DownloadJob.perform_later(url, pic_name)
 
-        #sleep((SecureRandom.rand))
+        # sleep((SecureRandom.rand))
        j_id = j_id + 1
       end
       # return

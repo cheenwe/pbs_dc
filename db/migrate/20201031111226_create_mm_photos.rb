@@ -6,7 +6,6 @@ class CreateMmPhotos < ActiveRecord::Migration[5.2]
       t.string :url
       t.integer :kind
 
-      t.datetime :created_at
     end
   end
 end
