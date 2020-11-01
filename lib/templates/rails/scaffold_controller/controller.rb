@@ -15,7 +15,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def index
     <%= plural_table_name %> = <%= class_name %>.order("id desc")
     @q = <%= plural_table_name %>.ransack(params[:q])
-    @<%= plural_table_name %> = @q.result().paginate(:page => params[:page], :per_page => params[:per_page])
+    @<%= plural_table_name %> = @q.result().paginate(:page => params[:page], :per_page => params[:per_page], :total_entries =>  <%= class_name %>.total_entries)
 
     respond_to do |format|
       format.html { render :index }

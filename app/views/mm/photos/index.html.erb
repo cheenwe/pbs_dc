@@ -87,9 +87,9 @@
                                   </label>
                                 </td>
 
-                                <td> <%=  Album.get_name(item.album_id) rescue ''%></td>
+                                <td> <%=  Mm::Album.get_name(item.album_id) rescue ''%></td>
                                 <td> <%= item.name %></td>
-                                <td> <%= item.url %></td>
+                                <td> <img src="<%= item.url %>" alt="" sizes="128px" srcset="">  </td>
                                 <td> <%= item.kind %></td>
                                 <td><%= bst item.created_at rescue '' %></td>
                                 <td class="text-center">

@@ -87,7 +87,7 @@
                                   </label>
                                 </td>
 
-                                <td> <%=  User.get_name(item.user_id) rescue ''%></td>
+                                <td> <%=  Mm::User.get_name(item.user_id) rescue ''%></td>
                                 <td> <%= item.name %></td>
                                 <td> <%= item.total %></td>
                                 <td> <%= item.kind %></td>

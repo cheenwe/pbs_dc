@@ -10,7 +10,7 @@ class Mm::AlbumsController < ApplicationController
   def index
     mm_albums = Mm::Album.order("id desc")
     @q = mm_albums.ransack(params[:q])
-    @mm_albums = @q.result().paginate(:page => params[:page], :per_page => params[:per_page])
+    @mm_albums = @q.result().paginate(:page => params[:page], :per_page => params[:per_page], :total_entries =>  Mm::Album.total_entries)
 
     respond_to do |format|
       format.html { render :index }
