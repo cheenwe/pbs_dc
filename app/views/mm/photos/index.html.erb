@@ -26,7 +26,7 @@
             <div class="d-flex">
                 <form class="search" action="/mm/photos" accept-charset="UTF-8" method="get" novalidate="">
                     <div class="input-group">
-                        <input placeholder="<%= t('name_or_code') %>" class="form-control" name="q[name_or_code_cont]" id="q_name_cont">
+                        <input placeholder="<%= t('name_or_code') %>" class="form-control" name="q[name_cont]" id="q_name_cont">
                         <input type="date" placeholder="<%= t('created_at_gteq') %>" id="ct1" class="form-control datepicker hidden-xs" name="q[created_at_gteq]" autocomplete="off" id="created_at_gteq">
                         <input type="date"  placeholder="<%= t('created_at_lteq') %>" id="ct2" class="form-control datepicker hidden-xs" name="q[created_at_lteq]" autocomplete="off"  id="created_at_lteq">
                         <div class="input-group-append"><button class="btn btn-secondary text-primary text-bold"  data-disable-with="<%= t :doing %>" type="submit"><i class="fa fa-search"><%= t :search %></i></button></div>
@@ -89,7 +89,11 @@
 
                                 <td> <%=  Mm::Album.get_name(item.album_id) rescue ''%></td>
                                 <td> <%= item.name %></td>
-                                <td> <img src="<%= item.url %>" alt="" sizes="128px" srcset="">  </td>
+                                <td>
+                                    <a href="<%= item.url%>" target="_blank">
+                                        <img src="<%= item.url%>" width="80" height="80" alt="Edit Entry" />
+                                    </a>
+                                </td>
                                 <td> <%= item.kind %></td>
                                 <td><%= bst item.created_at rescue '' %></td>
                                 <td class="text-center">

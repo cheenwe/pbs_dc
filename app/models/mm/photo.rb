@@ -49,7 +49,7 @@ class Mm::Photo < ApplicationRecord
     batch_size = 5000
     folder = "00"
     j_id = 1
-    Mm::Photo.find_in_batches(batch_size: batch_size).each do |list|
+    Mm::Photo.where("id >?", 28746).find_in_batches(batch_size: batch_size).each do |list|
       current_folder = download_path+folder
       system("mkdir -p #{current_folder}")
 
@@ -61,12 +61,14 @@ class Mm::Photo < ApplicationRecord
         pic_info = folder +"/"+name
         # p pic_name
         # p url
-        # item.update_columns( name: pic_info)
-        PhotoUpdateJob.perform_later(item, pic_info)
+        item.update_columns( name: pic_info)
+        #PhotoUpdateJob.perform_later(item, pic_info)
         DownloadJob.perform_later(url, pic_name)
+        #System.download_image(url, pic_name)
+
 
         # sleep((SecureRandom.rand))
-       j_id = j_id + 1
+       #j_id = j_id + 1/
       end
       # return
       sleep((SecureRandom.rand).to_i)
