@@ -8,7 +8,7 @@ class Mm::PhotosController < ApplicationController
 
   # GET /mm/photos
   def index
-    mm_photos = Mm::Photo.order("id desc")
+    mm_photos = Mm::Photo.all
     @q = mm_photos.ransack(params[:q])
     @mm_photos = @q.result().paginate(:page => params[:page], :per_page => params[:per_page], :total_entries =>  Mm::Photo.total_entries)
 

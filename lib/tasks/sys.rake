@@ -1,5 +1,9 @@
 namespace :sys do
 
+    desc "download pic"
+    task :download => [:environment] do
+      Mm::Photo.download_all_pic
+    end
 
     desc "export mysql db "
     task :export_mysql => [:environment] do
